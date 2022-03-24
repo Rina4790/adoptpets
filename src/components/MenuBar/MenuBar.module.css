@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 937px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0px 20px 20px;
+}
+
+.menuBar {
+  width: 230px;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.menuBar ul {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
+  list-style-type: none;
+  text-align: left;
+}
+
+.menuBar a {
+  text-decoration: none;
+  color: black;
+}
+
+a.activeLink {
+  text-decoration: underline;
+}

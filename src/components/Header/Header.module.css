@@ -1,0 +1,105 @@
+.header {
+  width: 100vw;
+  height: 60px;
+  /* border-bottom: 2px rgb(219,219,219) solid; */
+  display: flex;
+  justify-content: center;
+  padding: 0px 10px;
+}
+
+.containerHeader {
+  width: 937px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerBlock {
+  width: 437px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoandmenu {
+  width: 337px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo {
+  height: 50px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.searchContaiter {
+  display: flex;
+}
+
+.menuUser {
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+  height: 38px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+a {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+
+  margin-right: 2px;
+  background: conic-gradient(
+    from -3.29deg at 100% -13%,
+    #ffa502 0deg,
+    #ff6348 360deg
+  );
+  box-shadow: 0px 0px 30px rgba(255, 127, 80, 0.5);
+  border-radius: 10px;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  border: 1px solid #ff6348;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #ff6348;
+}
+
+.btn:hover ~ a {
+  color: #ff6348;
+}
+
+.userImg {
+  height: 50px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
