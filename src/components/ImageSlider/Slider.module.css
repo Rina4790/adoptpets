@@ -1,0 +1,29 @@
+.wrapper{
+	width: 930px;
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	position: relative;
+	width: 550px;
+	height: 550px;
+	/* background: red; */
+	overflow: hidden;
+ }
+ 
+ .inner-container {
+	display: flex;
+	height: 550px;
+	width: 100%;
+	position: absolute;
+ }
+ 
+ .card {
+	width: 550px;
+	height: 550px;
+	/* background: black; */
+	margin-right: 10px;
+	color: white;
+ }
+ 

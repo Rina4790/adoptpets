@@ -21,7 +21,7 @@ export const petsFetch = async (url: string, config?: RequestInit) => {
       const refresh = localStorage.getItem("refresh");
 
       const responseToken = await fetch(
-        "https://api.adoptpets.click/auth/refresh",
+        "https://api2.adoptpets.click/auth/refresh",
         {
           method: "POST",
           headers: {

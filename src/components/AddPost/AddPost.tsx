@@ -197,8 +197,7 @@ export const AddPet = () => {
                     <div className={styles.addImg}>
                       <Button onClick={() => {}}> Add</Button>
                       <input
-											  type="file"
-											  
+                        type="file"
                         accept="image/*"
                         onChange={onLoad}
                         className={styles.inputAddImg}

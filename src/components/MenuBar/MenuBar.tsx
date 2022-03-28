@@ -1,8 +1,11 @@
 import styles from "./MenuBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useSelector } from "react-redux";
+import { IState } from "../../redux/store";
+import { Button } from "../Button/Button";
 
 interface IProps {
   closeMenuBar: () => void;
@@ -11,6 +14,23 @@ interface IProps {
 export const MenuBar = ({ closeMenuBar }: IProps) => {
   const { isDark, changeIsDark } = useContext(ThemeContext);
 
+  const { isLoggedIn } = useSelector(
+	(state: IState) => state.authReducer
+  );
+	
+  const history = useHistory();
+	
+  const handleLogout = () => {
+	
+	localStorage.removeItem('access');
+	localStorage.removeItem('username');
+	setTimeout(() => {
+		history.replace("/login");
+		window.location.reload();
+	}, 1000)
+	  
+ }
+	
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -25,7 +45,7 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
               />
             </li>
             <li>
-              <img src="./images/home.svg"></img>
+              <img src="/images/home.svg"></img>
             </li>
             <li>
               <NavLink
@@ -56,7 +76,12 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
               >
                 Donations
               </NavLink>
-            </li>
+					  </li>
+					  {isLoggedIn ? (
+						  <li>
+							  <Button onClick={handleLogout}>LogOut</Button>
+						  </li>
+					  ): null}
           </ul>
         </div>
       </div>

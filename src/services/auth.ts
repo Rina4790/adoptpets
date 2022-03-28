@@ -5,7 +5,7 @@ export const registerUser = async (
   email: string,
   password: string
 ) => {
-  const response = await fetch("https://api.adoptpets.click/users", {
+  const response = await fetch("https://api2.adoptpets.click/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const registerUser = async (
 };
 
 export const loginUser = async (username: string, password: string) => {
-  const response = await fetch("https://api.adoptpets.click/auth/login", {
+  const response = await fetch("https://api2.adoptpets.click/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export const loginUser = async (username: string, password: string) => {
 };
 
 export const getProfile = async () => {
-  const response = await petsFetch("https://api.adoptpets.click/users/me");
+  const response = await petsFetch("https://api2.adoptpets.click/users/me");
 
   if (response.ok) {
     const result = await response.json();

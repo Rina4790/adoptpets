@@ -34,14 +34,18 @@ export const addPet = (pet: IPet) => {
   };
 };
 
+
+
 export const fetchPet = (id: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await fetch("https://api.adoptpets.click/pets/" + id);
+    const response = await fetch("https://api2.adoptpets.click/pets/" + id);
     const pet = await response.json();
 
     dispatch(addPet(pet));
   };
 };
+
+
 
 export const deletePet = () => {
   return { type: ACTIONS.DELETE_PET };

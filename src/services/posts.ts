@@ -1,10 +1,10 @@
 import { petsFetch } from "./helpers";
 
+// export const LIMIT = 5;
 
-
-export const getPets = async () => {
+export const getPosts = async () => {
   const response = await petsFetch(
-    `https://api2.adoptpets.click/users/me`
+    `https://api2.adoptpets.click/posts`
   );
 
   const result = await response.json();

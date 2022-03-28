@@ -28,10 +28,16 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      history.push("/");
-    }
-  }, [isLoggedIn]);
+	if (isLoggedIn) {
+		history.push("/");
+		window.location.reload();
+	}
+ }, [isLoggedIn]);
+	
+	
+  
+	
+  
 
   const onChangeUsername = useCallback((event) => {
     const value = event.target.value;
@@ -58,9 +64,12 @@ export const Login = () => {
     const isValid = values.every((value) => value === "");
 
     if (isValid) {
-      dispatch(login(username, password));
+		 dispatch(login(username, password));
+		
     }
   };
+	
+  
 
   const errorValues = error ? Object.values(error).flat() : "";
 

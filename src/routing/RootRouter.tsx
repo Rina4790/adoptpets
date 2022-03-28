@@ -9,6 +9,7 @@ import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 import { Login } from "../components/Login/Login";
 import { Pet } from "../components/PetsProfile/PetsProfile";
+import { Post } from "../components/Post/Post";
 import { PostList } from "../components/PostList/PostList";
 import { Registration } from "../components/Registration/Registration";
 import { UserProfile } from "../components/UserProfile/UserProfile";
@@ -27,7 +28,10 @@ export function RootRouter() {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route exact path="/" component={PostList} />
+			  <Route exact path="/" component={PostList} />
+			  <Route path="/post/:postId">
+          <Post />
+        </Route>
         <Route path="/aboutUs" component={AboutUs} />
         <Route path="/donations" component={Donations} />
         <Route path="/registration" component={Registration} />
