@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 340px;
+}
+
+.addPost {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.wrapper {
+  display: flex;
+  width: 1300px;
+  justify-content: space-around;
+  min-height: 450px;
+  margin-bottom: 30px;
+}
+
+.textArea {
+  margin-bottom: 40px;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.addImg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addImg img {
+  margin-bottom: 30px;
+}
+
+.inputAddImg {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  z-index: 100;
+  opacity: 0;
+  left: 0px;
+}
+.preview {
+  display: flex;
+  width: 630px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.errors {
+  margin-top: 20px;
+}

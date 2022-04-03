@@ -1,0 +1,35 @@
+.container {
+  padding: 10px 20px 17px 20px;
+}
+
+.allPosts {
+  padding: 50px 70px;
+}
+
+.avatar {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.petInfo {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.postList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.petName {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}

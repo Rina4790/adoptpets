@@ -1,0 +1,53 @@
+.userProfile {
+  display: flex;
+  justify-content: center;
+  padding: 42px 15px 15px 20px;
+  align-items: flex-start;
+}
+
+.userContainer {
+  width: 937px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardImage {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  margin-top: 50px;
+}
+
+.petList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttonAdd {
+  margin: 60px 20px 0px 0px;
+  width: 80px;
+  height: 80px;
+}
+
+.petCard {
+  margin: 0px 10px 30px;
+}
+
+.petName {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.petPicture {
+  position: relative;
+  width: 132px;
+  height: 164px;
+}
+
+.petImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}

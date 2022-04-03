@@ -1,0 +1,39 @@
+.avatar {
+  height: 300px;
+  width: 300px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.petCard {
+  font-size: 18px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.posts {
+  width: 1330px;
+  margin: 0px auto;
+  padding: 50px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 2;
+  justify-content: center;
+}
+
+.postCard {
+  margin: 30px;
+}
+
+.buttonAdd {
+  margin: 60px 20px 0px 0px;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+
