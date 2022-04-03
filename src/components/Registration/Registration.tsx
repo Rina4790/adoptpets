@@ -1,4 +1,4 @@
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
 
@@ -71,10 +71,8 @@ export const Registration = () => {
 
     setErrors(errors);
 
-    // const keys = Object.keys(errors);
     const values = Object.values(errors);
     const isValid = values.every((value) => value === "");
-    // const entries = Object.entries(errors);
     if (isValid) {
       dispatch(register({ username, email, password }));
     }
@@ -119,10 +117,6 @@ export const Registration = () => {
           <p>{errorValues}</p>
           <Button onClick={onClick}>Registration</Button>
         </div>
-
-        {/* <p className={styles.info}>
-			  If you have account, you can <NavLink to="/login">login</NavLink>
-			</p> */}
       </div>
     </div>
   );

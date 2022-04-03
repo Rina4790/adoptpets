@@ -12,7 +12,6 @@ export const Confirm = () => {
       <p>
         Dear {username} your account with email {email} registered successfully
       </p>
-
       <p>
         Please, <NavLink to="/login">Login</NavLink>
       </p>

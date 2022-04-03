@@ -16,10 +16,11 @@ export const AddPet = () => {
   const [description, setDescription] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
   const [sex, setSex] = useState<string>("");
-  const [has_home, setHas_home] = useState<boolean>(false);
+  const [hasHome, setHasHome] = useState<boolean>(false);
   const [image, setImage] = useState("");
-  const [birth_date, setBirth_date] = useState<string>("");
+  const [birthDate, setBirthDate] = useState<string>("");
   const [imageFile, setImageFile] = useState<Blob | null>(null);
+  const [errors, setErrors] = useState<string>();
 
   const onLoad = (event: any) => {
     setImageFile(event.target.files[0]);
@@ -40,30 +41,30 @@ export const AddPet = () => {
   const dispatch = useDispatch();
 
   const createNewPet = () => {
-    const formData = new FormData();
-
-    if (imageFile) {
+    if (imageFile && name && description && species && sex && birthDate) {
+      const formData = new FormData();
       formData.append("image", imageFile);
-    }
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("species", species);
-    formData.append("sex", sex);
-    formData.append("birth_date", birth_date);
-    formData.append("has_home", JSON.stringify(has_home));
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("species", species);
+      formData.append("sex", sex);
+      formData.append("birth_date", birthDate);
+      formData.append("has_home", JSON.stringify(hasHome));
 
-    petsFetch("https://api2.adoptpets.click/pets", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-      },
-      body: formData,
-    });
-	  setTimeout(() => {
-		dispatch(fetchPets());
-		history.push("/userProfile");
-	 }, 1000 )
-    
+      petsFetch("https://api2.adoptpets.click/pets", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+        },
+        body: formData,
+      });
+      setTimeout(() => {
+        dispatch(fetchPets());
+        history.push("/userProfile");
+      }, 1000);
+    } else {
+      setErrors("Fill in all fields and add a photo, please.");
+    }
   };
 
   const { isDark } = useContext(ThemeContext);
@@ -135,8 +136,8 @@ export const AddPet = () => {
                   <input
                     type="date"
                     name="birth_date"
-                    value={birth_date}
-                    onChange={(event) => setBirth_date(event.target.value)}
+                    value={birthDate}
+                    onChange={(event) => setBirthDate(event.target.value)}
                     style={{
                       color: theme.colorOfTextInput,
                       border: theme.borderOfButton,
@@ -152,14 +153,14 @@ export const AddPet = () => {
                 <label>
                   <input
                     type="checkbox"
-                    checked={has_home}
-                    onChange={() => setHas_home(!has_home)}
+                    checked={hasHome}
+                    onChange={() => setHasHome(!hasHome)}
                     className={styles.home}
                   />{" "}
-                  Has_home?{" "}
+                  Has home?{" "}
                 </label>
                 <div>
-                  {has_home ? (
+                  {hasHome ? (
                     <>
                       {" "}
                       {"  "} <img src="/images/homeFill.svg"></img> Yes
@@ -197,8 +198,7 @@ export const AddPet = () => {
                     <div className={styles.addImg}>
                       <Button onClick={() => {}}> Add</Button>
                       <input
-											  type="file"
-											  
+                        type="file"
                         accept="image/*"
                         onChange={onLoad}
                         className={styles.inputAddImg}
@@ -212,6 +212,10 @@ export const AddPet = () => {
           <div className={styles.addManeBtn}>
             <Button onClick={createNewPet}>Add Pet</Button>
           </div>
+          {errors &&
+          !(imageFile && name && description && species && sex && birthDate) ? (
+            <div className={styles.errors}>{errors}</div>
+          ) : null}
         </div>
       </div>
     </>

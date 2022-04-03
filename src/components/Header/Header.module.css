@@ -1,7 +1,6 @@
 .header {
   width: 100vw;
   height: 60px;
-  /* border-bottom: 2px rgb(219,219,219) solid; */
   display: flex;
   justify-content: center;
   padding: 0px 10px;

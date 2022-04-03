@@ -14,7 +14,6 @@ export const petsFetch = async (url: string, config?: RequestInit) => {
 
   if (response.ok === false) {
     const error = await response.json();
-    console.log(error.detail);
     const isExpired = error.detail.includes("expired");
 
     if (isExpired) {

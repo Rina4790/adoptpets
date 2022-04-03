@@ -6,7 +6,6 @@ import "./App.css";
 import { store } from "./redux/store";
 import { ThemeContext } from "./context/ThemeContext";
 
-
 function App() {
   const { theme } = useContext(ThemeContext);
 
@@ -18,8 +17,7 @@ function App() {
           background: theme.background,
         }}
       >
-			  <RootRouter />
-			  
+        <RootRouter />
       </div>
     </Provider>
   );

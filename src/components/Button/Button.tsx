@@ -5,6 +5,9 @@ import styles from "./Button.module.css";
 interface IProps {
   children: any;
   onClick?: () => void;
+  onClickID?: (id: string) => void;
+  onClickState?: (state: any) => void;
+  style?: any;
 }
 
 export const Button = ({ children, onClick }: IProps) => {

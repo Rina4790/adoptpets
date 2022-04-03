@@ -1,0 +1,144 @@
+.wrapper {
+  position: fixed;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000b5;
+}
+
+.background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.inner {
+  position: absolute;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 1300px;
+  height: 770px;
+  border: 0px solid transparent;
+  border-radius: 0 8px 8px 0;
+  flex-shrink: 3;
+}
+
+.container {
+  display: flex;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  height: 770px;
+}
+
+.userInfo {
+  display: flex;
+  padding: 14px 16px;
+  align-items: center;
+  width: 500px;
+  border-bottom: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+}
+
+.avatar {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border: 1px solid rgb(124, 115, 115);
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.petName {
+  color: #262626;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 600;
+  margin-block-end: 0.83em;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.comments {
+  height: 580px;
+  margin: 30px 20px 30px 100px;
+}
+
+.comment {
+  margin: 15px 20px 15px 0px;
+}
+
+.userInfoComment {
+  display: flex;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #8f8f8f;
+  text-align: left;
+}
+
+.close {
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -815px;
+  left: 1320px;
+}
+
+.closeBtn > img {
+  width: 32px;
+}
+
+.footerContainer {
+  justify-self: self-end;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.textarea > textarea {
+  height: 18px;
+  border: none;
+  background: none;
+  max-height: 80px;
+  resize: none;
+  overflow-y: hidden;
+  width: 455px;
+}
+.btn > button {
+  border: none;
+  background: none;
+  color: rgba(var(--d69, 0, 149, 246), 1);
+}
+
+textarea :focus {
+  border: none;
+}
+
+textarea:focus-visible {
+  outline: none;
+  border: 0px solid transparent;
+
+  box-shadow: none;
+}

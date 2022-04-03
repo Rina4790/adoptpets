@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { fetchPets } from "../../redux/actions/petActions";
 import { IState } from "../../redux/store";
-import { petsFetch } from "../../services/helpers";
+import { Button } from "../Button/Button";
 import styles from "./UserProfile.module.css";
 
 export interface IProfileCard {
@@ -32,6 +32,13 @@ export const UserProfile = () => {
     <div className={styles.userProfile}>
       <div className={styles.userContainer}>
         <div className={styles.userWrapper}>
+          <Button
+            onClick={() => {
+              history.push("/update");
+            }}
+          >
+            update Profile
+          </Button>
           <div className={styles.cardImage}>
             <img
               src="./images/add.svg"

@@ -30,13 +30,11 @@ export const loginUser = async (username: string, password: string) => {
     },
     body: JSON.stringify({ username, password }),
   });
-
   const result = await response.json();
 
   if (response.ok === false) {
     throw result;
   }
-
   return result;
 };
 
@@ -45,7 +43,6 @@ export const getProfile = async () => {
 
   if (response.ok) {
     const result = await response.json();
-
     return result;
   }
 };

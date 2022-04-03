@@ -13,24 +13,18 @@ interface IProps {
 
 export const MenuBar = ({ closeMenuBar }: IProps) => {
   const { isDark, changeIsDark } = useContext(ThemeContext);
+  const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
 
-  const { isLoggedIn } = useSelector(
-	(state: IState) => state.authReducer
-  );
-	
   const history = useHistory();
-	
   const handleLogout = () => {
-	
-	localStorage.removeItem('access');
-	localStorage.removeItem('username');
-	setTimeout(() => {
-		history.replace("/login");
-		window.location.reload();
-	}, 1000)
-	  
- }
-	
+    localStorage.removeItem("access");
+    localStorage.removeItem("username");
+    setTimeout(() => {
+      history.replace("/");
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -47,16 +41,19 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
             <li>
               <img src="/images/home.svg"></img>
             </li>
-            <li>
-              <NavLink
-                exact
-                to="/userProfile"
-                activeClassName={styles.activeLink}
-                onClick={closeMenuBar}
-              >
-                My Prolile
-              </NavLink>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <NavLink
+                  exact
+                  to="/userProfile"
+                  activeClassName={styles.activeLink}
+                  onClick={closeMenuBar}
+                >
+                  My Prolile
+                </NavLink>
+              </li>
+            ) : null}
+
             <li>
               <NavLink
                 exact
@@ -76,12 +73,12 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
               >
                 Donations
               </NavLink>
-					  </li>
-					  {isLoggedIn ? (
-						  <li>
-							  <Button onClick={handleLogout}>LogOut</Button>
-						  </li>
-					  ): null}
+            </li>
+            {isLoggedIn ? (
+              <li>
+                <Button onClick={handleLogout}>LogOut</Button>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>

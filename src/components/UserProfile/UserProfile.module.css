@@ -16,6 +16,7 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
+  margin-top: 50px;
 }
 
 .petList {

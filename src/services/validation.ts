@@ -12,7 +12,6 @@ const WRONG_NAME = "Имя должно быть не больше 60 симво
 const ENTER_EMAIL = "Введите почту";
 const WRONG_EMAIL_LANGUAGE = "Почта должна содержать только латинские буквы";
 const WRONG_EMAIL = "Почта должна содержать специальный символ @ и домен";
-const WRONG_EMAIL_LENGTH = "Ограничение на ввод более 40 символов";
 const ENTER_PASSWORD = "Введите пароль";
 const ENTER_REPEATED_PASSWORD = "Повторите пароль";
 const WRONG_PASSWORD_LANGUAGE =
@@ -24,7 +23,6 @@ const WRONG_PASSWORD_LENGTH =
 const WRONG_REPEATED_PASSWORD = "Пароли не совпадают";
 
 const NOT_ERROR = "";
-
 class ValidationService {
   public validateRequired(value: string): string {
     if (value === "") {

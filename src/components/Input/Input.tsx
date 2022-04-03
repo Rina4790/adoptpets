@@ -1,9 +1,4 @@
-import {
-  ChangeEventHandler,
-  KeyboardEventHandler,
-  useContext,
-  useState,
-} from "react";
+import { ChangeEventHandler, KeyboardEventHandler, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import styles from "./Input.module.css";
 

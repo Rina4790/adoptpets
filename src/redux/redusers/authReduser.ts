@@ -6,6 +6,10 @@ export interface IAuthState {
   email: string;
   id: number;
   isLoggedIn: boolean;
+  country: string;
+  city: string;
+  address: string;
+  phone: string;
 }
 
 const defaultState: IAuthState = {
@@ -14,6 +18,10 @@ const defaultState: IAuthState = {
   email: "",
   id: 0,
   isLoggedIn: false,
+  country: "",
+  city: "",
+  address: "",
+  phone: "",
 };
 
 export const authReducer = (state = defaultState, action: any) => {
@@ -21,6 +29,12 @@ export const authReducer = (state = defaultState, action: any) => {
     return { ...state, error: action.error };
   }
 
+  if (action.type === ACTIONS.LOGOUT) {
+    state = defaultState;
+    return {
+      undefined,
+    };
+  }
   if (action.type === ACTIONS.REGISTER_SUCCESS) {
     return {
       ...state,
@@ -39,11 +53,12 @@ export const authReducer = (state = defaultState, action: any) => {
       email: action.email,
       id: action.id,
       isLoggedIn: true,
+      country: action.country,
+      city: action.city,
+      address: action.address,
+      phone: action.phone,
     };
   }
 
   return state;
 };
-
-
- 
