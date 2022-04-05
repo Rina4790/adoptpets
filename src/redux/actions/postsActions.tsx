@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Dispatch } from "redux";
 import { petsFetch } from "../../services/helpers";
 
@@ -69,13 +70,40 @@ export const searchPosts = (
   sex: string,
   country: string,
   city: string,
-  has_home: boolean
+  has_home: boolean,
+	isLoggedIn: boolean,
+	hasHomeStr:string
 ) => {
-  return async (dispatch: Dispatch) => {
-    const response = await petsFetch(
-      `https://api2.adoptpets.click/search?offset=0&limit=100&species=${species}&gte_date=${gte_date}&sex=${sex}&country=${country}&city=${city}&has_home=${has_home}`
-    );
-    const result = await response.json();
-    dispatch(addPosts(result, result.count));
-  };
+  let url = `https://api2.adoptpets.click/search?offset=0&limit=100`;
+  {species !== "" ? (url = url + `&species=${species}`) : (url = url + "");}
+	{ sex !== "" ? (url = url + `&sex=${sex}`) : (url = url + ""); }
+	{ gte_date !== "" ? (url = url + `&gte_date=${gte_date}`) : (url = url + ""); }
+	{ country !== "" ? (url = url + `&country=${country}`) : (url = url + ""); }
+	{ city !== "" ? (url = url + `&city=${city}`) : (url = url + ""); }
+	{ hasHomeStr !== "" ? (url = url + `&has_home=${has_home}`) : (url = url + ""); }
+  if (isLoggedIn) {
+    return async (dispatch: Dispatch, getState: () => IState) => {
+      const {
+        postsReducer: {},
+      } = getState();
+      {
+        const response = await petsFetch(url);
+        const result = await response.json();
+        dispatch(addPosts(result, result.count));
+      }
+    };
+  } else {
+    return async (dispatch: Dispatch, getState: () => IState) => {
+      const {
+        postsReducer: {},
+      } = getState();
+      {
+        const response = await fetch(url);
+        const result = await response.json();
+        dispatch(addPosts(result, result.count));
+      }
+    };
+  }
 };
+
+// `https://api2.adoptpets.click/search?offset=0&limit=100&species=${species}&gte_date=${gte_date}&sex=${sex}&country=${country}&city=${city}&has_home=${has_home}`

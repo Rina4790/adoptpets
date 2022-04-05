@@ -4,12 +4,15 @@ import { useHistory } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { Button } from "../Button/Button";
 import { MenuBar } from "../MenuBar/MenuBar";
+import { fetchPosts } from "../../redux/actions/postsActions";
+import { useDispatch } from "react-redux";
 
 export const Header = () => {
   const history = useHistory();
   const username = localStorage.getItem("username");
   const isLog = localStorage.getItem("access");
-  const [isActive, setIsActive] = useState(false);
+	const [isActive, setIsActive] = useState(false);
+	const dispatch = useDispatch();
 
   const closeMenuBar = useCallback(() => {
     setIsActive(false);
@@ -23,7 +26,8 @@ export const Header = () => {
             <div className={styles.logoandmenu}>
               <div
                 className={styles.logoBlock}
-                onClick={() => {
+							  onClick={() => {
+								dispatch(fetchPosts())
                   history.push("/");
                 }}
               >
@@ -31,7 +35,7 @@ export const Header = () => {
                 <h4>adoptpets</h4>
               </div>
             </div>
-            <div className={styles.searchContaiter}>
+            {/* <div className={styles.searchContaiter}>
               <img
                 src="/images/search.svg"
                 alt="menu"
@@ -39,7 +43,7 @@ export const Header = () => {
                 onClick={() => {}}
               />
               <p>Search</p>
-            </div>
+            </div> */}
           </div>
           <div className={styles.menuUser}>
             <div className={styles.menuContaiter}>

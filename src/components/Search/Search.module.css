@@ -1,0 +1,101 @@
+.searchContaiter{
+	display: flex;
+	padding-left: 80px;
+	width: 160px;
+	justify-content: space-between;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.searchContainerVisible{
+	display: flex;
+	margin: 20px 0px;
+	width: 1400px;
+	justify-content: space-between;
+	margin: 20px;
+}
+
+select {
+	width:160px;
+	padding: 12px 5px;
+	border: 0 !important;
+	background: linear-gradient(122.5deg, #C0A197 0%, #243B55 102.64%);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+	  background-size: .6em;
+	  background-position: calc(100% - 0.3em) center;
+	  background-repeat: no-repeat;
+	  border-radius: 5px;
+	  font-size: 20px;
+ }
+ select::-ms-expand {
+	  display: none;
+ }
+ option {
+	font-weight: normal;
+	display: block;
+	white-space: nowrap;
+	min-height: 40px;
+	padding: 0px 2px 1px;
+	background-image: linear-gradient(122.5deg, #C0A197 0%, #243B55 102.64%);
+}
+ 
+option :hover{
+	background-color: #C0A197;
+}
+ 
+
+
+ /* select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: #5c6664;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#fff;
+   cursor:pointer;
+   font-size: 1em;
+   font-family: 'Open Sans', sans-serif;
+}
+select::-ms-expand {
+   display: none;
+}
+.select {
+   position: relative;
+   display: flex;
+   width: 20em;
+   height: 3em;
+   line-height: 3;
+   background: #5c6664;
+   overflow: hidden;
+   border-radius: .25em;
+}
+.select::after {
+   content: '\25BC';
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0 1em;
+   background: #2b2e2e;
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+}
+.select:hover::after {
+   color: #23b499;
+} */
