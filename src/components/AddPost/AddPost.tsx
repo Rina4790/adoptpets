@@ -54,13 +54,17 @@ export const UploadFile = () => {
           Accept: "application/json, text/plain, */*",
         },
         body: formData,
-      });
-      if (petId) {
-        setTimeout(() => {
-          dispatch(fetchPet(petId));
-          history.push(`/pet/${petId}`);
-        }, 1000);
-      }
+		}).then(() => {
+			if (petId) {
+				dispatch(fetchPet(petId));
+			}
+		})
+		 .then(() => {
+			history.push(`/pet/${petId}`);
+		 });
+		 
+		 
+      
     } else {
       setErrors("Add text and image");
     }

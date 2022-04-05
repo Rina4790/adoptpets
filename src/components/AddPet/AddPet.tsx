@@ -57,11 +57,14 @@ export const AddPet = () => {
           Accept: "application/json, text/plain, */*",
         },
         body: formData,
-      });
-      setTimeout(() => {
-        dispatch(fetchPets());
-        history.push("/userProfile");
-      }, 1000);
+		}).then(() => {
+			dispatch(fetchPets());
+		}).then(() => {
+			history.push("/userProfile");
+		})
+      
+      
+    
     } else {
       setErrors("Fill in all fields and add a photo, please.");
     }
