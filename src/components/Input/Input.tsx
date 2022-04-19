@@ -8,7 +8,9 @@ interface IProps {
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   type?: string;
   label?: string;
-  error?: string;
+	error?: string;
+	name?: string;
+	list?: string;
 }
 
 export const Input = ({
@@ -17,7 +19,9 @@ export const Input = ({
   value,
   error,
   onChange,
-  onKeyDown,
+	onKeyDown,
+	name, list
+  
 }: IProps) => {
   const { theme } = useContext(ThemeContext);
   const { isDark } = useContext(ThemeContext);

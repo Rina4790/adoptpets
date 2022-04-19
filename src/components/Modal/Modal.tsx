@@ -11,12 +11,17 @@ export interface IModal {
   time: Date;
   avatar?: string;
   name?: string;
-  onClick?: () => void;
+	onClick?: () => void;
+	onLike?: () => void;
+	onLikeDelete?: () => void;
   isVisible: boolean;
   onClose: () => void;
   children?: any;
   value: string;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+	onChange: ChangeEventHandler<HTMLTextAreaElement>;
+	likes_count?: number;
+	comments_count?: number;
+	liked?: boolean;
 }
 
 export const Modal = ({
@@ -31,14 +36,20 @@ export const Modal = ({
   onClick,
   value,
   onChange,
-  children,
+	children,
+	likes_count,
+	comments_count,
+	onLike,
+	liked,
+	onLikeDelete
 }: IModal) => {
   return isVisible ? (
     <div className={styles.wrapper}>
       <div className={styles.background} onClick={onClose}></div>
       <div className={styles.inner}>
         <div className={styles.container}>
-          <SimpleImageSlider
+				  <SimpleImageSlider
+				style={{objectFit: "cover"}}
             width={770}
             height={770}
             images={images}
@@ -62,7 +73,17 @@ export const Modal = ({
                 </div>
               </div>
               {children}
-            </div>
+					  </div>
+					  <div className={styles.likesAndComments}>
+						  <div className={styles.likesCount}>
+							  {liked ? (<img onClick={onLikeDelete} src="/images/liked.svg"></img>):
+							  (<img onClick={onLike} src="/images/like1.svg"></img>)}
+							   {likes_count}
+						  </div>
+						  <div className={styles.commentsCount}>
+						  <img src="/images/comment.svg"></img> {comments_count}
+						  </div>
+					  </div>
             <div className={styles.footerContainer}>
               <div className={styles.footer}>
                 <div className={styles.textarea}>

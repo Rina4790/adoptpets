@@ -8,11 +8,13 @@ import { Confirm } from "../components/ConfirmRegisration/Confirm";
 import { Donations } from "../components/Donations/Donations";
 import { Header } from "../components/Header/Header";
 import { Login } from "../components/Login/Login";
+import { PetHome } from "../components/PetHome/PetHome";
 import { Pet } from "../components/PetsProfile/PetsProfile";
 import { Post } from "../components/Post/Post";
 import { PostList } from "../components/PostList/PostList";
 import { Registration } from "../components/Registration/Registration";
 import { Update } from "../components/UpdadeUser/UpdadeUser";
+import { IdUser } from "../components/UserProfile/IdUser";
 import { UserProfile } from "../components/UserProfile/UserProfile";
 import { init } from "../redux/actions/authActions";
 import { IState } from "../redux/store";
@@ -23,6 +25,8 @@ export function RootRouter() {
   const isLoggedIn = useSelector(
     (state: IState) => state.authReducer.isLoggedIn
   );
+	
+  const isLog = localStorage.getItem("access");
 
   useEffect(() => {
     dispatch(init());
@@ -49,12 +53,18 @@ export function RootRouter() {
         </Route>
         <Route path="/pet/:petId">
           <Pet />
+			  </Route>
+			  <Route path="/users/:usserId">
+          <IdUser />
         </Route>
         <Route path="/addpost">
           {isLoggedIn ? <UploadFile /> : <Redirect to={"/login"} />}
         </Route>
         <Route path="/update">
-          {isLoggedIn ? <Update /> : <Redirect to={"/login"} />}
+          {!isLog ?  <Redirect to={"/login"} /> : <Update />}
+			  </Route>
+			  <Route path="/pethome">
+          {!isLog ?  <Redirect to={"/login"} /> : <PetHome />}
         </Route>
       </Switch>
     </BrowserRouter>

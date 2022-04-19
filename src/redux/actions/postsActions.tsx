@@ -37,7 +37,7 @@ export const fetchPosts = () => {
 
 export const fetchPetPost = (id: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await fetch(
+    const response = await petsFetch(
       `https://api2.adoptpets.click/pets/${id}/posts`
     );
     const petPosts = await response.json();
@@ -54,7 +54,7 @@ export const addPost = (post: IPost) => {
 
 export const fetchPost = (id: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await fetch("https://api2.adoptpets.click/posts/" + id);
+    const response = await petsFetch("https://api2.adoptpets.click/posts/" + id);
     const post = await response.json();
     dispatch(addPost(post));
   };

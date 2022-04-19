@@ -13,12 +13,14 @@ export interface IPost {
       text: string;
       id: string;
       time: Date;
-      owner_id: string;
+      owner_id: number;
       post_id: string;
       username: string;
     }
   ];
-  comments_count: number;
+	comments_count: number;
+	likes_count: number;
+	liked: boolean;
 }
 
 export interface IPostsState {
@@ -42,12 +44,14 @@ const defaultState: IPostsState = {
         text: "",
         id: "",
         time: new Date(),
-        owner_id: "",
+        owner_id: 0,
         post_id: "",
         username: "",
       },
     ],
-    comments_count: 0,
+	  comments_count: 0,
+	  likes_count: 0,
+	  liked: false,
   },
   count: 0,
 };
@@ -69,16 +73,28 @@ export const postsReducer = (state = defaultState, action: any) => {
     case ACTIONS.DELETE_POST: {
       return {
         ...state,
-        post: {
-          id: 0,
-          owner_id: 0,
-          images: [],
-          text: "",
-          time: "",
-          avatar: "",
-          name: "",
+        
+			post: {
+				id: "",
+				owner_id: 0,
+				images: [""],
+				text: "",
+				time: new Date(),
+				avatar: "",
+				name: "",
+				comments: [
+				  {
+					 text: "",
+					 id: "",
+					 time: new Date(),
+					 owner_id: "",
+					 post_id: "",
+					 username: "",
+				  },
+				],
+				comments_count: 0,
         },
-      };
+      }
     }
 
     default:

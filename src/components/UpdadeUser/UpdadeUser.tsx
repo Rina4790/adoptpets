@@ -8,6 +8,7 @@ import { petsFetch } from "../../services/helpers";
 import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
 import styles from "./UpdateUser.module.css";
+import { Country, State, City } from "country-state-city";
 
 export const Update = () => {
   const dispatch = useDispatch();
@@ -33,11 +34,10 @@ export const Update = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: newEmail }),
-    });
-    setTimeout(() => {
-      dispatch(userData());
-      window.location.reload();
-    }, 1000);
+	 }).then(() => {
+		setNewEmail("")
+		dispatch(userData())
+	 })
   };
 
   const changeCountry = () => {
@@ -47,12 +47,17 @@ export const Update = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ country: newCountry }),
-    });
-    setTimeout(() => {
-      dispatch(userData());
-      window.location.reload();
-    }, 1000);
+	 }).then(() => {
+		setNewCountry("")
+		dispatch(userData())
+	 }).then(() => {
+		window.location.reload()
+	 })
   };
+	
+	const changeStates = () => {
+		setStates(states)
+	}
 
   const changeCity = () => {
     petsFetch(`https://api2.adoptpets.click/users/me`, {
@@ -95,6 +100,8 @@ export const Update = () => {
       window.location.reload();
     }, 1000);
   };
+	const countries = Country.getAllCountries();
+	const [states, setStates] = useState("");
 
   return (
     <div className={styles.wrapper}>
@@ -110,24 +117,65 @@ export const Update = () => {
       </div>
       <div>
         <p>My country: {country}</p>
-        <Input
+        <input
+          className={styles.input}
           type="text"
-          label="newCountry"
-          value={newCountry}
+          name="country"
+          list="country"
           onChange={(event) => setNewCountry(event.target.value)}
-        />
+        ></input>
+        <datalist id="country">
+          <option selected value="">
+            Country
+          </option>
+          {countries.map((country) => (
+            <option label={country.name} value={country.isoCode}></option>
+          ))}
+        </datalist>
         <Button onClick={changeCountry}>change country</Button>
-      </div>
-      <div>
-        <p>My city: {city}</p>
-        <Input
+		  </div>
+		  
+		  <div>
+        <p> States {setStates}</p>
+        <input
+          className={styles.input}
           type="text"
-          label="newCity"
-          value={newCity}
+          name="states"
+          list="states"
+          onChange={(event) => setStates(event.target.value)}
+        ></input>
+        <datalist id="states">
+          <option selected value="">
+			 states
+          </option>
+			 {State.getStatesOfCountry(country).map((state) => (
+                  <option label={state.name} value={state.isoCode}></option>
+                ))}
+        </datalist>
+        <Button onClick={changeStates}>change states</Button>
+		  </div>
+
+		  <div>
+        <p>My city: {city}</p>
+        <input
+          className={styles.input}
+          type="text"
+          name="newCity"
+          list="newCity"
           onChange={(event) => setNewCity(event.target.value)}
-        />
+        ></input>
+        <datalist id="newCity">
+          <option selected value="">
+			 newCity
+          </option>
+			 {City.getCitiesOfState(country, states).map((city) => (
+                  <option label={city.name} value={city.name}></option>
+                ))}
+        </datalist>
         <Button onClick={changeCity}>change city</Button>
-      </div>
+		  </div>
+
+      
       <div>
         <p>My address: {address}</p>
         <Input

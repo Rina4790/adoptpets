@@ -6,11 +6,14 @@ export interface IAuthState {
   email: string;
   id: number;
   isLoggedIn: boolean;
-  country: string;
+	country: string;
+	states: string;
   city: string;
   address: string;
-  phone: string;
+	phone: string;
+	
 }
+
 
 const defaultState: IAuthState = {
   error: null,
@@ -18,10 +21,13 @@ const defaultState: IAuthState = {
   email: "",
   id: 0,
   isLoggedIn: false,
-  country: "",
+	country: "",
+  states: "",
   city: "",
   address: "",
-  phone: "",
+	phone: "",
+	
+  
 };
 
 export const authReducer = (state = defaultState, action: any) => {
@@ -62,3 +68,4 @@ export const authReducer = (state = defaultState, action: any) => {
 
   return state;
 };
+

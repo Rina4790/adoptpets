@@ -35,9 +35,9 @@ export const PostList = () => {
   };
 
   const openModal = (id: string) => {
+    sessionStorage.setItem("postId", id);
     document.body.classList.add("modalShow");
     dispatch(fetchPost(id));
-    sessionStorage.setItem("postId", id);
     setIsModalVisible(true);
     return () => {
       dispatch(deletePost());
@@ -46,12 +46,13 @@ export const PostList = () => {
 
   const onClose = () => {
     setIsModalVisible(false);
+    sessionStorage.removeItem("postId");
     document.body.classList.remove("modalShow");
   };
   const [species, setSpecies] = useState<string>("");
   const [sex, setSex] = useState<string>("");
   const [hasHomeStr, setHasHomeStr] = useState<string>("");
-  let has_home: boolean ;
+  let has_home: boolean;
   {
     hasHomeStr === "true" ? (has_home = true) : (has_home = false);
   }
@@ -67,32 +68,43 @@ export const PostList = () => {
   //   useEffect(() => {
   //     dispatch(searchPosts( species, gte_date, sex, country, city, has_home, isLoggedIn));
   //   }, []);
-	
-	const search = () => {
-		dispatch(searchPosts( species, gte_date, sex, country, city, has_home, isLoggedIn, hasHomeStr));
-	}
 
-	const addComment = () => {
-		if (id !== 0) {
-			const post_id = sessionStorage.getItem("postId");
-			if (textComment !== "") {
-				petsFetch("https://api2.adoptpets.click/comments", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ text: textComment, owner_id: id, post_id }),
-				}).then(() => {
-					setTextComment("");
-					if (post_id) {
-						dispatch(fetchPost(post_id));
-					}
-				});
-			}
-		} else {
-			alert("Login, please")
-			setTextComment("");
-		}
+  const search = () => {
+    dispatch(
+      searchPosts(
+        species,
+        gte_date,
+        sex,
+        country,
+        city,
+        has_home,
+        isLoggedIn,
+        hasHomeStr
+      )
+    );
+  };
+
+  const addComment = () => {
+    if (id !== 0) {
+      const post_id = sessionStorage.getItem("postId");
+      if (textComment !== "") {
+        petsFetch("https://api2.adoptpets.click/comments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: textComment, owner_id: id, post_id }),
+        }).then(() => {
+          setTextComment("");
+          if (post_id) {
+            dispatch(fetchPost(post_id));
+          }
+        });
+      }
+    } else {
+      alert("Login, please");
+      setTextComment("");
+    }
   };
 
   const { theme } = useContext(ThemeContext);
@@ -156,35 +168,34 @@ export const PostList = () => {
           <div className={styles.noPostsTitle}>NO posts...</div>
         )}
       </div>
-      {post.images ? (
-        <Modal
-          isVisible={isModalVisible}
-          onClose={onClose}
-          key={post.id}
-          images={post.images}
-          text={post.text}
-          id={post.id}
-          avatar={post.avatar}
-          name={post.name}
-          time={post.time}
-          value={textComment}
-          onChange={(event) => setTextComment(event.target.value)}
-          onClick={addComment}
-        >
-          <>
-            {comments.map((item) => (
-              <Comments
-                text={item.text}
-                id={item.id}
-                time={item.time}
-                owner_id={item.owner_id}
-                post_id={item.post_id}
-                username={item.username}
-              />
-            ))}
-          </>
-        </Modal>
-      ) : null}
+
+      <Modal
+        isVisible={isModalVisible}
+        onClose={onClose}
+        key={post.id}
+        images={post.images}
+        text={post.text}
+        id={post.id}
+        avatar={post.avatar}
+        name={post.name}
+        time={post.time}
+        value={textComment}
+        onChange={(event) => setTextComment(event.target.value)}
+        onClick={addComment}
+      >
+        <>
+          {comments.map((item) => (
+            <Comments
+              text={item.text}
+              id={item.id}
+              time={item.time}
+              owner_id={item.owner_id}
+              post_id={item.post_id}
+              username={item.username}
+            />
+          ))}
+        </>
+      </Modal>
     </>
   );
 };

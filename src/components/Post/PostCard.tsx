@@ -10,8 +10,11 @@ export interface IPostCard {
   images: string[];
   text: string;
   time: Date;
-  onClick?: () => void;
+	onClick?: () => void;
+	onClickNav?: () => void;
 }
+
+
 
 export const PostCard = ({
   id,
@@ -19,21 +22,37 @@ export const PostCard = ({
   images,
   onClick,
   text,
-  time,
+	time,
+	onClickNav,
 }: IPostCard) => {
-  const { theme } = useContext(ThemeContext);
+
+	const style = {
+		hoverStyle: {
+		  
+		  '&:hover': { backgroundColor: "white" },
+		}
+	 };
+	
+	const { theme } = useContext(ThemeContext);
+
+	
+	
 
   return (
     <div className={styles.postCard} onClick={onClick}>
-      <div className={styles.cardImage}>
-        <SimpleImageSlider
+      <div className={styles.cardImage} >
+			  <SimpleImageSlider
+				  {...style.hoverStyle}
+				  
+				style={{objectFit: "cover"}}
           width={300}
           height={300}
           images={images}
           showBullets={images.length !== 1 ? true : false}
           showNavs={images.length !== 1 ? true : false}
           navMargin={5}
-          navSize={40}
+				  navSize={40}
+				  onClickNav={()=>onClickNav}
         />
       </div>
 
