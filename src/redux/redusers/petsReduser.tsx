@@ -9,7 +9,9 @@ export interface IPet {
   image: string;
   has_home: boolean;
   id: number;
-  owner_id: number;
+	owner_id: number;
+	country: string;
+	city: string;
 }
 
 export interface IPetsState {
@@ -29,7 +31,9 @@ const defaultState: IPetsState = {
     image: "",
     has_home: false,
     id: 0,
-    owner_id: 0,
+	  owner_id: 0,
+	  country: "",
+	  city: "",
   },
   count: 0,
 };

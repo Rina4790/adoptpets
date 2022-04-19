@@ -28,6 +28,8 @@ const getUserData = (profile: IProfile) => {
   };
 };
 
+
+
 export const register = ({ username, email, password }: IRegisterData) => {
   return async (dispatch: Dispatch) => {
     try {
@@ -55,6 +57,9 @@ interface IProfile {
   address: string;
   phone: string;
 }
+
+
+
 const registerSuccess = (profile: IProfile) => {
   return {
     type: ACTIONS.REGISTER_SUCCESS,

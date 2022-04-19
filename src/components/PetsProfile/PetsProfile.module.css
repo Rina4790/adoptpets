@@ -36,4 +36,15 @@
   cursor: pointer;
 }
 
+.owner_id{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.owner_id_img{
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	margin-left: 15px;
+}

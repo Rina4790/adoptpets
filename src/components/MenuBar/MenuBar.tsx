@@ -13,7 +13,8 @@ interface IProps {
 
 export const MenuBar = ({ closeMenuBar }: IProps) => {
   const { isDark, changeIsDark } = useContext(ThemeContext);
-  const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
+	const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
+	const petInHome = localStorage.getItem("petInHome");
 
   const history = useHistory();
   const handleLogout = () => {
@@ -38,8 +39,16 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
                 }}
               />
             </li>
-            <li>
-              <img src="/images/home.svg"></img>
+					  <li>
+						  
+						  <NavLink
+                exact
+                to="/pethome"
+                activeClassName={styles.activeLink}
+                onClick={closeMenuBar}
+              >
+                {petInHome ? (<img src="/images/homeFill.svg"></img>): (<img src="/images/home.svg"></img>)}
+              </NavLink>
             </li>
             {isLoggedIn ? (
               <li>

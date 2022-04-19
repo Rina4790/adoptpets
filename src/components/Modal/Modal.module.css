@@ -142,3 +142,16 @@ textarea:focus-visible {
 
   box-shadow: none;
 }
+
+
+.delete{
+	width: 30px;
+}
+
+.likesAndComments{
+	width: 120px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
