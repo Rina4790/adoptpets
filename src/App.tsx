@@ -5,6 +5,7 @@ import { RootRouter } from "./routing/RootRouter";
 import "./App.css";
 import { store } from "./redux/store";
 import { ThemeContext } from "./context/ThemeContext";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -17,7 +18,7 @@ function App() {
           background: theme.background,
         }}
       >
-        <RootRouter />
+        <BrowserRouter><RootRouter /></BrowserRouter>
       </div>
     </Provider>
   );

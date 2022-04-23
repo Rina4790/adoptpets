@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { PostCard } from "./PostCard";
 
 import styles from "./PostCard.module.css";
@@ -9,15 +9,15 @@ import { IState } from "../../redux/store";
 import { deletePost, fetchPost } from "../../redux/actions/postsActions";
 
 export const Post = () => {
-  const params: { postId: string } = useParams();
-  const history = useHistory();
+  const {postId} = useParams<"postId">();
+  
   const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
 
   const post = useSelector((state: IState) => state.postsReducer.post);
 
   useEffect(() => {
-    dispatch(fetchPost(params.postId));
+    dispatch(fetchPost(String(postId)));
 
     return () => {
       dispatch(deletePost());
@@ -41,9 +41,7 @@ export const Post = () => {
         style={{
           color: theme.timeText,
         }}
-        onClick={() => {
-          history.goBack();
-        }}
+        
       >
         Back
       </p>

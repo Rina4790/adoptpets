@@ -6,12 +6,12 @@ import { userId } from "../../redux/actions/userActions";
 import { IState } from "../../redux/store";
 
 export const IdUser = () => {
-	const params: { usserId: string } = useParams();
+	const  { usserId} = useParams<"usserId">();
    const user = useSelector((state: IState) => state.userReducer.user);
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
-		dispatch(userId(params.usserId));
+		dispatch(userId(String(usserId)));
 		
 		
 	}, []);

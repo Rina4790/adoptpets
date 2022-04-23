@@ -12,6 +12,9 @@ export interface IPostCard {
   time: Date;
 	onClick?: () => void;
 	onClickNav?: () => void;
+	state?: {
+		backgroundLocation: any;
+  }
 }
 
 
@@ -24,6 +27,7 @@ export const PostCard = ({
   text,
 	time,
 	onClickNav,
+	state,
 }: IPostCard) => {
 
 	const style = {
@@ -42,9 +46,7 @@ export const PostCard = ({
     <div className={styles.postCard} onClick={onClick}>
       <div className={styles.cardImage} >
 			  <SimpleImageSlider
-				  {...style.hoverStyle}
-				  
-				style={{objectFit: "cover"}}
+				style={{borderRadius: "15px"}}
           width={300}
           height={300}
           images={images}

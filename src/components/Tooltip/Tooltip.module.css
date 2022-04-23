@@ -1,0 +1,30 @@
+.tooltipContainer {
+	position: relative;
+ }
+ 
+ .tooltipBox {
+	position: absolute;
+	background: rgba(48, 42, 42, 0.5);
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	top: calc(100% + 5px);
+	display: none;
+	width: max-content;
+	height: 30px;
+ }
+ 
+ .tooltipBox.visible {
+	display: block;
+	
+ }
+ 
+ .tooltipArrow {
+	position: absolute;
+	top: -10px;
+	left: 20%;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent rgba(48, 42, 42, 0.5) transparent;
+	z-index: 2;
+ }
