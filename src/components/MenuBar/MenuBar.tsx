@@ -1,5 +1,5 @@
 import styles from "./MenuBar.module.css";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -13,15 +13,16 @@ interface IProps {
 
 export const MenuBar = ({ closeMenuBar }: IProps) => {
   const { isDark, changeIsDark } = useContext(ThemeContext);
-	const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
-	const petInHome = localStorage.getItem("petInHome");
+  const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
+  const petInHome = localStorage.getItem("petInHome");
+  const navigate = useNavigate();
 
-  const history = useHistory();
   const handleLogout = () => {
     localStorage.removeItem("access");
     localStorage.removeItem("username");
+
     setTimeout(() => {
-      history.replace("/");
+      navigate("/");
       window.location.reload();
     }, 1000);
   };
@@ -38,48 +39,42 @@ export const MenuBar = ({ closeMenuBar }: IProps) => {
                   changeIsDark();
                 }}
               />
-            </li>
-					  <li>
-						  
-						  <NavLink
-                exact
-                to="/pethome"
-                activeClassName={styles.activeLink}
-                onClick={closeMenuBar}
-              >
-                {petInHome ? (<img src="/images/homeFill.svg"></img>): (<img src="/images/home.svg"></img>)}
+					  </li>
+					  {isLoggedIn ? (
+              <li>
+              <NavLink to="/pethome" onClick={closeMenuBar}>
+                {petInHome ? (
+                  <img src="/images/homeFill.svg"></img>
+                ) : (
+                  <img src="/images/home.svg"></img>
+                )}
               </NavLink>
             </li>
+            ) : null}
+            
             {isLoggedIn ? (
               <li>
-                <NavLink
-                  exact
-                  to="/userProfile"
-                  activeClassName={styles.activeLink}
-                  onClick={closeMenuBar}
-                >
+                <NavLink to="/userProfile" onClick={closeMenuBar}>
                   My Prolile
+                </NavLink>
+              </li>
+					  ) : null}
+					  
+					  {isLoggedIn ? (
+              <li>
+                <NavLink to="/favorite" onClick={closeMenuBar}>
+                  My favorite posts
                 </NavLink>
               </li>
             ) : null}
 
             <li>
-              <NavLink
-                exact
-                to="/aboutUs"
-                activeClassName={styles.activeLink}
-                onClick={closeMenuBar}
-              >
+              <NavLink to="/aboutUs" onClick={closeMenuBar}>
                 About Us
               </NavLink>
             </li>
             <li>
-              <NavLink
-                exact
-                to="/donations"
-                activeClassName={styles.activeLink}
-                onClick={closeMenuBar}
-              >
+              <NavLink to="/donations" onClick={closeMenuBar}>
                 Donations
               </NavLink>
             </li>

@@ -1,14 +1,15 @@
 import styles from "./Header.module.css";
-import { useHistory } from "react-router-dom";
+
 
 import { useCallback, useState } from "react";
 import { Button } from "../Button/Button";
 import { MenuBar } from "../MenuBar/MenuBar";
 import { fetchPosts } from "../../redux/actions/postsActions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  const history = useHistory();
+	const navigate = useNavigate();
   const username = localStorage.getItem("username");
   const isLog = localStorage.getItem("access");
 	const [isActive, setIsActive] = useState(false);
@@ -28,7 +29,7 @@ export const Header = () => {
                 className={styles.logoBlock}
 							  onClick={() => {
 								dispatch(fetchPosts())
-                  history.push("/");
+                  navigate("/");
                 }}
               >
                 <img src="/images/paw.svg" alt="menu" className={styles.logo} />
@@ -59,7 +60,7 @@ export const Header = () => {
                 <div
                   className={styles.userInfo}
                   onClick={() => {
-                    history.push("/userProfile");
+                    navigate("/userProfile");
                   }}
                 >
                   <img
@@ -73,14 +74,14 @@ export const Header = () => {
                 <>
                   <Button
                     onClick={() => {
-                      history.push("/login");
+                      navigate("/login");
                     }}
                   >
                     Login
                   </Button>
                   <Button
                     onClick={() => {
-                      history.push("/registration");
+                      navigate("/registration");
                     }}
                   >
                     Registration

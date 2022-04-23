@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import { fetchPets } from "../../redux/actions/petActions";
 import { petsFetch } from "../../services/helpers";
@@ -11,7 +11,7 @@ import styles from "./AddPet.module.css";
 
 export const AddPet = () => {
   const { theme } = useContext(ThemeContext);
-
+  const navigate = useNavigate();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
@@ -37,7 +37,7 @@ export const AddPet = () => {
     setImageFile(null);
   };
 
-  const history = useHistory();
+  
   const dispatch = useDispatch();
 
   const createNewPet = () => {
@@ -60,7 +60,7 @@ export const AddPet = () => {
 		}).then(() => {
 			dispatch(fetchPets());
 		}).then(() => {
-			history.push("/userProfile");
+			navigate("/userProfile");
 		})
       
       

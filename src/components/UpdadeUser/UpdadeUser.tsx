@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+
 import { userData } from "../../redux/actions/authActions";
 import { fetchPets } from "../../redux/actions/petActions";
 import { IState } from "../../redux/store";
@@ -21,7 +21,8 @@ export const Update = () => {
   const address = useSelector((state: IState) => state.authReducer.address);
   const [newAddress, setNewAddress] = useState("");
   const phone = useSelector((state: IState) => state.authReducer.phone);
-  const [newPhone, setNewPhone] = useState("");
+	const [newPhone, setNewPhone] = useState("");
+	const statess = useSelector((state: IState) => state.authReducer.states);
 
   useEffect(() => {
     dispatch(userData());
@@ -56,7 +57,17 @@ export const Update = () => {
   };
 	
 	const changeStates = () => {
-		setStates(states)
+		petsFetch(`https://api2.adoptpets.click/users/me`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ state: states }),
+    });
+    setTimeout(() => {
+      dispatch(userData());
+      window.location.reload();
+    }, 1000);
 	}
 
   const changeCity = () => {
@@ -136,7 +147,7 @@ export const Update = () => {
 		  </div>
 		  
 		  <div>
-        <p> States {setStates}</p>
+        <p> States: {statess}</p>
         <input
           className={styles.input}
           type="text"

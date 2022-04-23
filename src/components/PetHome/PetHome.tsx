@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { fetchPet } from "../../redux/actions/petActions";
 import { IState } from "../../redux/store";
 import { Button } from "../Button/Button";
 
 export const PetHome = () => {
 	
-	const params: { petId: string } = useParams();
-	const dispatch = useDispatch();
+	
 	const pet = useSelector((state: IState) => state.petsReducer.pet);
+	const dispatch = useDispatch();
+
 	const petInHome = localStorage.getItem("petInHome");
 	console.log(petInHome)
 
@@ -18,6 +20,9 @@ export const PetHome = () => {
 			dispatch(fetchPet(petInHome));
 		}
 	}, []);
+	
+
+	
 	
 	const deletePet = () => {
 		localStorage.removeItem("petInHome");

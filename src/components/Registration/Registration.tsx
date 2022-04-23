@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
 
@@ -9,6 +9,7 @@ import styles from "./Registration.module.css";
 import { validationService } from "../../services/validation";
 import { register } from "../../redux/actions/authActions";
 import { IState } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 export const Registration = () => {
   const [username, setUserName] = useState("");
@@ -17,16 +18,16 @@ export const Registration = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const dispatch = useDispatch();
   const error = useSelector((state: IState) => state.authReducer.error);
-
+  const navigate = useNavigate();
   const emailState = useSelector((state: IState) => state.authReducer.email);
   const usernameState = useSelector(
     (state: IState) => state.authReducer.username
   );
-  const history = useHistory();
+
 
   useEffect(() => {
     if (emailState) {
-      history.push("/confirm");
+      navigate("/confirm");
     }
   }, [emailState, usernameState]);
 

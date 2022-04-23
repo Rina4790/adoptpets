@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dispatch } from "redux";
 import { petsFetch } from "../../services/helpers";
 
-import { getPosts } from "../../services/posts";
+import { getPosts, getPostsLike } from "../../services/posts";
 import { ACTIONS } from "../constants";
 import { IPost } from "../redusers/postsReduser";
 import { IState } from "../store";
@@ -34,6 +34,18 @@ export const fetchPosts = () => {
     }
   };
 };
+
+export const fetchPostsLike = () => {
+	return async (dispatch: Dispatch, getState: () => IState) => {
+	  const {
+		 postsReducer: {},
+	  } = getState();
+	  {
+		 const result = await getPostsLike();
+		 dispatch(addPosts(result, result.count));
+	  }
+	};
+ };
 
 export const fetchPetPost = (id: string) => {
   return async (dispatch: Dispatch) => {

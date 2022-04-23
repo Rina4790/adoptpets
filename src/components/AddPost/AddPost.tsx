@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 import { fetchPet } from "../../redux/actions/petActions";
 import { petsFetch } from "../../services/helpers";
@@ -14,7 +14,7 @@ export const UploadFile = () => {
   const [preview, setPreview] = useState<string[]>([]);
   const [errors, setErrors] = useState<string>();
   const fileobj: any[] = [];
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onLoad = (event: any) => {
@@ -60,7 +60,7 @@ export const UploadFile = () => {
 			}
 		})
 		 .then(() => {
-			history.push(`/pet/${petId}`);
+			navigate(`/pet/${petId}`);
 		 });
 		 
 		 
