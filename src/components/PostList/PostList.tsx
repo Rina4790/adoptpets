@@ -7,13 +7,15 @@ import { IState } from "../../redux/store";
 import { fetchPosts, searchPosts } from "../../redux/actions/postsActions";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SearchBar } from "../Search/Search";
+import { petsFetch } from "../../services/helpers";
 
 export const PostList = () => {
   const dispatch = useDispatch();
   let location = useLocation();
   let state = location.state as { backgroundLocation?: Location };
   const navigate = useNavigate();
-  const posts = useSelector((state: IState) => state.postsReducer.posts);
+	const posts = useSelector((state: IState) => state.postsReducer.posts);
+	const [postsArr, setPostsArr]=useState(posts)
   const { isLoggedIn } = useSelector((state: IState) => state.authReducer);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const openSearchBar = () => {
@@ -32,8 +34,9 @@ export const PostList = () => {
   const [city, setCity] = useState<string>("");
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+	  dispatch(fetchPosts());
+	  setPostsArr(posts)
+  }, [posts]);
 
   const search = () => {
     dispatch(
@@ -49,8 +52,29 @@ export const PostList = () => {
       )
     );
   };
+	
+  const like = (id: string) => {
+	petsFetch(`https://api2.adoptpets.click/posts/${id}/like`, {
+	  method: "POST",
+	  headers: {
+		 "Content-Type": "application/json",
+	  },
+	  body: JSON.stringify({ id: id }),
+	})
+ };
 
-  const { theme } = useContext(ThemeContext);
+ const likeDelete = (id: string) => {
+	petsFetch(`https://api2.adoptpets.click/posts/${id}/like`, {
+	  method: "DELETE",
+	  headers: {
+		 "Content-Type": "application/json",
+	  },
+	  body: JSON.stringify({ id: id }),
+	})
+ };
+
+	const { theme } = useContext(ThemeContext);
+	const { isDark } = useContext(ThemeContext);
   return (
     <>
       <SearchBar
@@ -69,7 +93,9 @@ export const PostList = () => {
           <>
             <div className={styles.postList}>
               {posts.map((item) => (
-                <div>
+                <div className={styles.group} style={{
+						backgroundColor: theme.postBackground,
+					 }}>
                   <div className={styles.petInfo}>
                     <img
                       src={item.avatar}
@@ -91,8 +117,12 @@ export const PostList = () => {
                     </div>
                   </div>
 						  <div className={styles.postLink}>
-							  {item.liked ? (<img src="/images/like2.svg" className={styles.icon}></img>) : 
-							  (<img src="/images/like.svg" className={styles.icon}></img>)}
+							  {item.liked ? (<img onClick={() => {
+	                        likeDelete(item.id);
+	                      }} src="/images/like2.svg" className={styles.icon}></img>) : 
+							  (<img onClick={() => {
+								like(item.id);
+							 }} src={isDark ? "/images/like1.svg" : "/images/like.svg"} className={styles.icon}></img>)}
                     <Link
                       key={item.id}
                       to={`/img/${item.id}`}

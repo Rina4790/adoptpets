@@ -3,12 +3,21 @@
 }
 
 .allPosts {
-  padding: 50px 70px;
+  padding: 5px 30px 35px 95px;
+}
+
+.group {
+  height: 550px;
+
+  width: 365px;
+  border-radius: 10px;
+  margin-top: 36px;
+  margin-right: 60px;
 }
 
 .avatar {
-  height: 60px;
-  width: 60px;
+  height: 76px;
+  width: 76px;
   object-fit: cover;
   border: 1px solid white;
   border-radius: 50%;
@@ -19,13 +28,14 @@
 .petInfo {
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 12px 18px 12px 6px;
+  height: 76px;
 }
 
 .postList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .petName {
@@ -34,16 +44,26 @@
   font-weight: bold;
 }
 
-.postLink{
-	position: relative;
+.postLink {
+  position: relative;
 }
 
-.icon{
-	position: absolute;
-	
-	width: 30px;
-	height: 30px;
-	left: 85%;
-	top: -15%;
-	filter: drop-shadow(3px 5px 2px rgba(255, 255, 255, 0.795));
+.icon {
+  position: absolute;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  left: 85%;
+  top: -15%;
+  transition: transform .3s ease-in-out;
+ 
 }
+
+.icon:hover {
+  transform: scale(1.5) ;
+}
+
+
+
+
+ 

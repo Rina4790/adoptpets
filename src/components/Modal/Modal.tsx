@@ -44,7 +44,6 @@ export const Modal = () => {
   const post_id = Number(postId);
   const addComment = () => {
     if (id !== 0) {
-      
       if (textComment !== "") {
         petsFetch("https://api2.adoptpets.click/comments", {
           method: "POST",
@@ -54,9 +53,9 @@ export const Modal = () => {
           body: JSON.stringify({ text: textComment, owner_id: id, post_id }),
         }).then(() => {
           setTextComment("");
-           if (postId) {
-             dispatch(fetchPost(postId));
-           }
+          if (postId) {
+            dispatch(fetchPost(postId));
+          }
         });
       }
     } else {
@@ -73,7 +72,6 @@ export const Modal = () => {
       },
       body: JSON.stringify({ id: id }),
     }).then(() => {
-    
       if (postId) {
         dispatch(fetchPost(postId));
       }
@@ -102,7 +100,6 @@ export const Modal = () => {
       },
       body: JSON.stringify({ id: id }),
     }).then(() => {
-     
       if (postId) {
         dispatch(fetchPost(postId));
       }
@@ -131,7 +128,7 @@ export const Modal = () => {
         <div className={styles.inner}>
           <div className={styles.containerModal}>
             <div className={styles.container}>
-              <Slider {...settings} >{sliders()}</Slider>
+              <Slider {...settings}>{sliders()}</Slider>
             </div>
 
             <div className={styles.info}>
@@ -163,9 +160,12 @@ export const Modal = () => {
                       <div
                         onClick={() => {
                           deleteComment(item.id);
-									 }}
-									 style={{color: "grey",
-										fontSize: "12px", cursor: "pointer"}}
+                        }}
+                        style={{
+                          color: "grey",
+                          fontSize: "12px",
+                          cursor: "pointer",
+                        }}
                       >
                         {" "}
                         Delete{" "}
@@ -175,43 +175,43 @@ export const Modal = () => {
                 ))}
               </div>
               <div className={styles.buttom}>
-              	<div className={styles.likesAndComments}>
-	                <div className={styles.icon}>
-	                  {post.liked ? (
-	                    <img
-	                      onClick={() => {
-	                        likeDelete(post.id);
-	                      }}
-	                      src="/images/liked.svg"
-	                    ></img>
-	                  ) : (
-	                    <img
-	                      onClick={() => {
-	                        like(post.id);
-	                      }}
-	                      src="/images/like1.svg"
-	                    ></img>
-	                  )}
-	                  {post.likes_count}
-	                </div>
-	                <div className={styles.icon}>
-	                  <img src="/images/comment.svg"></img>  {post.comments_count}
-	                </div>
-	              </div>
-	              <div className={styles.footerContainer}>
-	                <div className={styles.footer}>
-	                  <div className={styles.textarea}>
-	                    <textarea
-	                      placeholder="Add comment..."
-	                      value={textComment}
-	                      onChange={(event) => setTextComment(event.target.value)}
-	                    />
-	                  </div>
-	                  <div className={styles.btn}>
-	                    <button onClick={addComment}>Publish</button>
-	                  </div>
-	                </div>
-	              </div>
+                <div className={styles.likesAndComments}>
+                  <div className={styles.icon}>
+                    {post.liked ? (
+                      <img
+                        onClick={() => {
+                          likeDelete(post.id);
+                        }}
+                        src="/images/liked.svg"
+                      ></img>
+                    ) : (
+                      <img
+                        onClick={() => {
+                          like(post.id);
+                        }}
+                        src="/images/like.svg"
+                      ></img>
+                    )}
+                    {post.likes_count}
+                  </div>
+                  <div className={styles.icon}>
+                    <img src="/images/comment.svg"></img> {post.comments_count}
+                  </div>
+                </div>
+                <div className={styles.footerContainer}>
+                  <div className={styles.footer}>
+                    <div className={styles.textarea}>
+                      <textarea
+                        placeholder="Add comment..."
+                        value={textComment}
+                        onChange={(event) => setTextComment(event.target.value)}
+                      />
+                    </div>
+                    <div className={styles.btn}>
+                      <button onClick={addComment}>Publish</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
