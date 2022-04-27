@@ -34,7 +34,9 @@ const [postsArr, setPostsArr]=useState(posts)
           <>
             <div className={styles.postList}>
               {posts.map((item) => (
-                <div>
+                <div className={styles.group} style={{
+						backgroundColor: theme.postBackground,
+					 }}>
                   <div className={styles.petInfo}>
                     <img
                       src={item.avatar}

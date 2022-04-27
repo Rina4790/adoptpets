@@ -1,6 +1,23 @@
 .postCard{
-	margin: 5px 5px 10px 5px;
-	max-width: 310px;
+
+	width: 365px;
 	
 }
 
+.cardContent{
+	height: 55px;
+	margin: 10px;
+	
+}
+
+.contentText{
+	
+	
+	height: 55px;
+	width : 340px;
+	display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}

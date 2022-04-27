@@ -46,35 +46,36 @@ export const PostCard = ({
     <div className={styles.postCard} onClick={onClick}>
       <div className={styles.cardImage} >
 			  <SimpleImageSlider
-				style={{borderRadius: "15px"}}
-          width={300}
-          height={300}
+			
+          width={365}
+          height={365}
           images={images}
           showBullets={images.length !== 1 ? true : false}
-          showNavs={images.length !== 1 ? true : false}
-          navMargin={5}
-				  navSize={40}
+         //  showNavs={images.length !== 1 ? true : false}
+			showNavs={false}
+         //  navMargin={5}
+			// 	  navSize={40}
 				  onClickNav={()=>onClickNav}
         />
       </div>
 
       <div className={styles.cardContent}>
-        <p
+        <div
           className={styles.contentText}
           style={{
             color: theme.grayText,
           }}
         >
-          {text}
-        </p>
-        <p
+          {text} 
+        </div>
+        {/* <p
           className={styles.contentDate}
           style={{
             color: theme.timeText,
           }}
         >
           {time.toString().split("T").join("  ").split(".")[0]}
-        </p>
+        </p> */}
       </div>
     </div>
   );
