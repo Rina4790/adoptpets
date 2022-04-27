@@ -8,6 +8,7 @@ import { fetchPosts, searchPosts } from "../../redux/actions/postsActions";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SearchBar } from "../Search/Search";
 import { petsFetch } from "../../services/helpers";
+import { Container } from "../Blobs/Blobs";
 
 export const PostList = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ export const PostList = () => {
 	const { theme } = useContext(ThemeContext);
 	const { isDark } = useContext(ThemeContext);
   return (
-    <>
+    <Container>
       <SearchBar
         isVisible={isSearchVisible}
         openSearchBar={openSearchBar}
@@ -145,6 +146,6 @@ export const PostList = () => {
           <div className={styles.noPostsTitle}>NO posts...</div>
         )}
       </div>
-    </>
+    </Container>
   );
 };

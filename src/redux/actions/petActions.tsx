@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { petsFetch } from "../../services/helpers";
 
 import { getPets } from "../../services/pets";
 import { ACTIONS } from "../constants";
@@ -34,7 +35,7 @@ export const addPet = (pet: IPet) => {
 
 export const fetchPet = (id: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await fetch("https://api2.adoptpets.click/pets/" + id);
+    const response = await petsFetch("https://api2.adoptpets.click/pets/" + id);
     const pet = await response.json();
     dispatch(addPet(pet));
   };

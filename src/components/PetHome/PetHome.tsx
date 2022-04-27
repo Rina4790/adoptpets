@@ -12,12 +12,11 @@ export const PetHome = () => {
 	const pet = useSelector((state: IState) => state.petsReducer.pet);
 	const dispatch = useDispatch();
 
-	const petInHome = localStorage.getItem("petInHome");
-	console.log(petInHome)
+	const petInHome = useSelector((state: IState) => state.authReducer.petInHome);
 
 	useEffect(() => {
 		if (petInHome) {
-			dispatch(fetchPet(petInHome));
+			dispatch(fetchPet(String(petInHome)));
 		}
 	}, []);
 	

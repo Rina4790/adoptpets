@@ -3,3 +3,17 @@
 	height: 90vh;
 }
 
+.mainForm{
+	margin-bottom: 30px;
+}
+
+.registration{
+	margin-top: 20px;
+	font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 44px;
+text-decoration: underline;
+cursor: pointer;
+}

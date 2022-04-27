@@ -18,7 +18,7 @@ export const Header = () => {
   const [isActive, setIsActive] = useState(false);
   const dispatch = useDispatch();
 	const { isDark, changeIsDark } = useContext(ThemeContext);
-	const petInHome = localStorage.getItem("petInHome");
+	const petInHome = useSelector((state: IState) => state.authReducer.petInHome);
 
   const closeMenuBar = useCallback(() => {
     setIsActive(false);

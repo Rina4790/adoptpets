@@ -12,20 +12,18 @@ import { Country, State, City } from "country-state-city";
 
 export const Update = () => {
   const dispatch = useDispatch();
-  const email = useSelector((state: IState) => state.authReducer.email);
   const [newEmail, setNewEmail] = useState("");
-  const country = useSelector((state: IState) => state.authReducer.country);
-  const [newCountry, setNewCountry] = useState("");
-  const city = useSelector((state: IState) => state.authReducer.city);
+	const [newCountry, setNewCountry] = useState("");
+	const [newState, setNewState] = useState("");
   const [newCity, setNewCity] = useState("");
-  const address = useSelector((state: IState) => state.authReducer.address);
   const [newAddress, setNewAddress] = useState("");
-  const phone = useSelector((state: IState) => state.authReducer.phone);
 	const [newPhone, setNewPhone] = useState("");
-	const statess = useSelector((state: IState) => state.authReducer.states);
+	const user = useSelector((state: IState) => state.authReducer);
+
 
   useEffect(() => {
-    dispatch(userData());
+	  dispatch(userData());
+	  
   }, []);
 
   const changeEmail = () => {
@@ -62,7 +60,7 @@ export const Update = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ state: states }),
+      body: JSON.stringify({ state: newState }),
     });
     setTimeout(() => {
       dispatch(userData());
@@ -117,7 +115,7 @@ export const Update = () => {
   return (
     <div className={styles.wrapper}>
       <div>
-        <p>My email: {email}</p>
+        <p>My email: {user.email}</p>
         <Input
           type="text"
           label="newEmail"
@@ -127,7 +125,7 @@ export const Update = () => {
         <Button onClick={changeEmail}>change Email</Button>
       </div>
       <div>
-        <p>My country: {country}</p>
+        <p>My country: {user.country}</p>
         <input
           className={styles.input}
           type="text"
@@ -147,19 +145,19 @@ export const Update = () => {
 		  </div>
 		  
 		  <div>
-        <p> States: {statess}</p>
+        <p> States: {user.state}</p>
         <input
           className={styles.input}
           type="text"
-          name="states"
-          list="states"
-          onChange={(event) => setStates(event.target.value)}
+          name="state"
+          list="state"
+          onChange={(event) => setNewState(event.target.value)}
         ></input>
-        <datalist id="states">
+        <datalist id="state">
           <option selected value="">
 			 states
           </option>
-			 {State.getStatesOfCountry(country).map((state) => (
+			 {State.getStatesOfCountry(user.country).map((state) => (
                   <option label={state.name} value={state.isoCode}></option>
                 ))}
         </datalist>
@@ -167,7 +165,7 @@ export const Update = () => {
 		  </div>
 
 		  <div>
-        <p>My city: {city}</p>
+        <p>My city: {user.city}</p>
         <input
           className={styles.input}
           type="text"
@@ -179,7 +177,7 @@ export const Update = () => {
           <option selected value="">
 			 newCity
           </option>
-			 {City.getCitiesOfState(country, states).map((city) => (
+			 {City.getCitiesOfState(user.country, user.state).map((city) => (
                   <option label={city.name} value={city.name}></option>
                 ))}
         </datalist>
@@ -188,7 +186,7 @@ export const Update = () => {
 
       
       <div>
-        <p>My address: {address}</p>
+        <p>My address: {user.address}</p>
         <Input
           type="text"
           label="newAddress"
@@ -198,7 +196,7 @@ export const Update = () => {
         <Button onClick={changeAddress}>change city</Button>
       </div>
       <div>
-        <p>My phone: {phone}</p>
+        <p>My phone: {user.phone}</p>
         <Input
           type="text"
           label="newPhone"

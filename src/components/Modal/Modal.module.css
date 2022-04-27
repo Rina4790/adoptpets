@@ -204,7 +204,7 @@ textarea:focus-visible {
   display: block;
   width: 770px;
   height: 770px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .slick-prev,
@@ -228,4 +228,3 @@ textarea:focus-visible {
 .slick-next {
   right: 25px;
 }
-

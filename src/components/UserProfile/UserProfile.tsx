@@ -6,6 +6,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { fetchPets } from "../../redux/actions/petActions";
 import { IState } from "../../redux/store";
 import { petsFetch } from "../../services/helpers";
+import { Container } from "../Blobs/Blobs";
 import { Button } from "../Button/Button";
 import styles from "./UserProfile.module.css";
 
@@ -26,6 +27,9 @@ export const UserProfile = () => {
   const dispatch = useDispatch();
   const pets = useSelector((state: IState) => state.petsReducer.pets);
   const count = useSelector((state: IState) => state.petsReducer.count);
+	const user = useSelector((state: IState) => state.authReducer);
+	const petInHome = useSelector((state: IState) => state.authReducer.petInHome);
+	console.log(petInHome)
 
   useEffect(() => {
     dispatch(fetchPets());
@@ -43,39 +47,98 @@ export const UserProfile = () => {
     });
   };
 
+  const { isDark } = useContext(ThemeContext);
+
   return (
-    <div className={styles.userProfile}>
-      <div className={styles.userContainer}>
-        <div className={styles.userWrapper}>
-          <Button
-            onClick={() => {
-              navigate("/update");
-            }}
-          >
-            update Profile
-          </Button>
-          <div className={styles.cardImage}>
-            <img
-              src="./images/add.svg"
-              onClick={() => {
-                navigate("/addpet");
+    <Container>
+      <div className={styles.userProfile}>
+        <div style={{
+                          backgroundColor: theme.postBackground,
+                        }}
+				  className={styles.userContainer}
+        >
+          <div className={styles.userWrapper}>
+            <div className={styles.userDataCentr}>
+              <div
+                className={
+                  isDark
+                    ? `${styles.userData} ${styles.userDataBlack}`
+                    : `${styles.userData}`
+                }
+                style={{
+                  color: theme.grayText,
+                }}
+              >
+                <img
+                  src={isDark ? "/images/user.svg" : "/images/userbl.svg"}
+                  alt="filter"
+                />
+                <div className={styles.userName}>
+                  {user.username}
+                  <img
+                    onClick={() => {
+                      navigate("/update");
+                    }}
+                    src={isDark ? "/images/penW.svg" : "/images/pen.svg"}
+                    alt="filter"
+                  />
+                </div>
+                {user.email}
+              </div>
+            </div>
+
+            <div
+              className={styles.userContact}
+              style={{
+                color: theme.grayText,
               }}
-              className={styles.buttonAdd}
-            ></img>
+            >
+              <div>Country: {user.country}</div>
+              <div>State: {user.state}</div>
+              <div>City: {user.city}</div>
+              <div>Address: {user.address}</div>
+              <div>Phone: {user.phone}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={styles.petsContainer}
+          style={{
+            color: theme.grayText,
+          }}
+        >
+          My pets
+          <div className={styles.cardImage}>
+            <div className={styles.cardNewPet}>
+              <div
+                className={styles.cardNewPetHeader}
+                style={{
+                  backgroundColor: theme.postBackground,
+                }}
+              >
+                Add new pet
+              </div>
+              <div
+                className={
+                  isDark
+                    ? `${styles.cardNewPetAdd} ${styles.cardNewPetAdd_black}`
+                    : `${styles.cardNewPetAdd}`
+                }
+              >
+                <img
+                  onClick={() => {
+                    navigate("/addpet");
+                  }}
+                  src={isDark ? "/images/plus.svg" : "/images/plusbl.svg"}
+                  alt="filter"
+                />
+              </div>
+            </div>
 
             {pets.length ? (
               <div className={styles.petList}>
                 {pets.map((item) => (
                   <div className={styles.petContainer}>
-                    <div>
-                      <img
-                        src="./images/delete.svg"
-                        className={styles.petDelete}
-                        onClick={() => {
-                          deletePet(item.id);
-                        }}
-                      ></img>
-                    </div>
                     <div
                       onClick={() => {
                         navigate("/pet/" + item.id);
@@ -83,15 +146,19 @@ export const UserProfile = () => {
                       className={styles.petCard}
                     >
                       <div
-                        className={styles.petName}
+                        className={styles.cardNewPetHeader}
                         style={{
                           color: theme.grayText,
+                          backgroundColor: theme.postBackground,
                         }}
                       >
                         {item.name}
                       </div>
-                      <div className={styles.petPicture}>
-                        <img src={item.image} className={styles.petImg}></img>
+                      <div className={styles.cardMyPet}>
+                        <img
+                          src={item.image}
+                          className={styles.cardMyPet}
+                        ></img>
                       </div>
                     </div>
                   </div>
@@ -101,6 +168,6 @@ export const UserProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };

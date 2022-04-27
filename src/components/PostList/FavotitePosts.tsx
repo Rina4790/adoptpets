@@ -10,6 +10,7 @@ import {
 
 } from "../../redux/actions/postsActions";
 import { ThemeContext } from "../../context/ThemeContext";
+import { Container } from "../Blobs/Blobs";
 
 
 export const FavoritePosts = () => {
@@ -28,7 +29,7 @@ const [postsArr, setPostsArr]=useState(posts)
 
   const { theme } = useContext(ThemeContext);
   return (
-    <>
+    <Container>
       <div className={styles.allPosts}>
         {posts ? (
           <>
@@ -87,6 +88,6 @@ const [postsArr, setPostsArr]=useState(posts)
       </div>
 
       
-    </>
+    </Container>
   );
 };

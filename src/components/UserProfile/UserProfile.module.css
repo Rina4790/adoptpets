@@ -1,15 +1,120 @@
 .userProfile {
   display: flex;
-  justify-content: center;
-  padding: 42px 15px 15px 20px;
+  justify-content: space-between;
+  padding: 80px 105px 55px 130px;
   align-items: flex-start;
+  min-height: 91vh;
 }
 
 .userContainer {
-  width: 937px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 482px;
+  height: 657px;
+  border-radius: 15px;
+}
+.userContact {
+  height: 373px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  text-align: start;
+  padding: 27px 15px 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 39px;
+}
+
+
+.userDataCentr {
+  display: flex;
+  justify-content: center;
+}
+
+.userData {
+  width: 400px;
+  padding: 14px 0px 27px;
+  border-bottom: 1px solid black;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 29px;
+}
+
+.userDataBlack {
+  border-bottom: 1px solid white;
+}
+
+.userData img {
+  width: 170px;
+  height: 170px;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+}
+
+.userName img {
+  width: 28px;
+  height: 28px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.cardNewPet {
+  margin-right: 30px;
+}
+
+.cardNewPetHeader {
+  width: 187px;
+  height: 49px;
+  border-radius: 10px 10px 0px 0px;
+  background: rgba(241, 241, 241, 0.75);
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  padding: 10px 3px;
+}
+
+.cardNewPetAdd {
+  width: 187px;
+  height: 187px;
+  border: 2px solid rgba(241, 241, 241, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardNewPetAdd_black {
+  border: 2px solid rgb(104, 100, 98);
+}
+
+.cardNewPetAdd img {
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardNewPetAdd img:hover {
+  transform: scale(1.5);
+}
+
+.petsContainer {
+  width: 868px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 29px;
 }
 
 .cardImage {
@@ -32,6 +137,7 @@
 
 .petCard {
   margin: 0px 30px 30px 0px;
+  cursor: pointer;
 }
 
 .petName {
@@ -40,7 +146,13 @@
   text-align: start;
   padding-left: 5px;
   width: 120px;
- 
+}
+
+.cardMyPet {
+  width: 187px;
+  height: 187px;
+  object-fit: cover;
+  
 }
 
 .petPicture {
@@ -56,12 +168,12 @@
   border-radius: 10px;
 }
 
-.petContainer{
-	position: relative;
+.petContainer {
+  position: relative;
 }
 
-.petDelete{
-	position: absolute;
-	left: 70%;
-	cursor: pointer;
+.petDelete {
+  position: absolute;
+  left: 70%;
+  cursor: pointer;
 }

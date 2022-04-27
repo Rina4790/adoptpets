@@ -3,6 +3,7 @@ import { getProfile, loginUser, registerUser } from "../../services/auth";
 import { getUser } from "../../services/user";
 import { ACTIONS } from "../constants";
 import { IState } from "../store";
+import { IAuthState } from "../redusers/authReduser";
 interface IRegisterData {
   username: string;
   email: string;
@@ -26,6 +27,20 @@ const getUserData = (profile: IProfile) => {
     type: ACTIONS.GET_USER_DATA,
     ...profile,
   };
+};
+
+const getPedId = (petInHome: IAuthState) => {
+	return {
+	  type: ACTIONS.ADD_HOME,
+	  petInHome: petInHome,
+	};
+ };
+ 
+ export const addPetInHome = (petInHome: number) => {
+	return {
+		 type: ACTIONS.ADD_HOME,
+		 petInHome,
+	};
 };
 
 

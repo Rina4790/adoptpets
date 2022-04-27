@@ -21,3 +21,40 @@
    overflow: hidden;
    text-overflow: ellipsis;
 }
+
+.container {
+	display: inline-block;
+	width: 365px;
+	height: 365px;
+	margin: 0 auto;
+ 
+	color: #333;
+	background: #ffffff;
+ }
+
+ .slickSlide img {
+	display: block;
+	width: 365px;
+	height: 365px;
+	object-fit: cover;
+ }
+
+ .slickSlide {
+	display: inline-block;
+ }
+
+ 
+
+.slickSlide:hover {
+	background-color: rgb(43, 41, 41);
+	background-image: url("./view.svg");
+	background-size: 50px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.slickSlide img:hover,
+.slickSlide:hover img {
+	
+	opacity: 0.3;
+}

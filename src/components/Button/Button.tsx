@@ -18,7 +18,7 @@ export const Button = ({ children, onClick }: IProps) => {
       onClick={onClick}
       style={{
         background: theme.colorOfButton,
-        border: theme.borderOfButton,
+        
       }}
       className={isDark ? `${styles.btn} ${styles.btn_dark}` : `${styles.btn}`}
     >

@@ -1,0 +1,62 @@
+/* .blob1 {
+	width: 100%;
+	background-image: url('./blobs2\).svg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: 55% 25%;
+	background-size: 500px;
+ } */
+
+.blob1 {
+  width: 100%;
+  background-image: url("./pawbg.svg");
+min-height: 91vh;
+  background-repeat: repeat-y;
+  background-position: 1% 25%;
+  background-size: 1850px;
+}
+
+.blob2 {
+  width: 100%;
+  background-image: url("./blobs3\).svg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 10% 20%;
+  background-size: 500px;
+}
+
+.blob3 {
+  width: 100%;
+  background-image: url("./blobs4\).svg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 33% 99%;
+  background-size: 400px;
+}
+
+.blob4 {
+  width: 100%;
+  background-image: url("./blobs5\).svg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 92% 94.9%;
+  background-size: 500px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.background {
+  display: block;
+  margin-left: auto;
+  z-index: -1;
+}

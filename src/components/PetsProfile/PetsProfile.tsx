@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { addSyntheticLeadingComment } from "typescript";
 import { ThemeContext } from "../../context/ThemeContext";
+import { addPetInHome } from "../../redux/actions/authActions";
 
 import { deletePet, fetchPet } from "../../redux/actions/petActions";
 import { fetchPetPost, fetchPost } from "../../redux/actions/postsActions";
@@ -27,8 +28,7 @@ export const Pet = () => {
 console.log(petId)
   
 const addHome = (id: number) => {
-	const petId = id.toString()
-	localStorage.setItem("petInHome", petId)
+	dispatch(addPetInHome(id))
 }
 
   const deletePostId = (id: string) => {
@@ -45,6 +45,8 @@ const addHome = (id: number) => {
     });
   };
 
+ 
+	
   useEffect(() => {
     if (petId) {
       dispatch(fetchPet(petId));

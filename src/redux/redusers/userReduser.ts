@@ -6,7 +6,7 @@ export interface IUserState {
 		 username: string;
 		 email: string;
 		 country: string;
-		 states: string;
+		 state: string;
 		city: string;
 		address: string;
 		 phone: string;
@@ -33,7 +33,7 @@ export interface IUserState {
 			 username: "",
 			 email: "",
 			 country: "",
-			 states: "",
+			 state: "",
 			city: "",
 			address: "",
 			 phone: "",

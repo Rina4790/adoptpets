@@ -2,6 +2,9 @@ import { useContext } from "react";
 import styles from "./PostCard.module.css";
 import { ThemeContext } from "../../context/ThemeContext";
 import SimpleImageSlider from "react-simple-image-slider";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export interface IPostCard {
   id: string;
@@ -39,24 +42,38 @@ export const PostCard = ({
 	
 	const { theme } = useContext(ThemeContext);
 
-	
+	const settings = {
+		dots: true,
+		arrows: false,
+		adaptiveHeight: true,
+		variableWidth: true,
+	 };
+  
+	 const sliders = () => {
+		return images.map((data) => {
+		  return (
+			 <div key={data} className={styles.slickSlide}>
+				<img alt="image" src={data} />
+			 </div>
+		  );
+		});
+	 };
 	
 
   return (
     <div className={styles.postCard} onClick={onClick}>
-      <div className={styles.cardImage} >
-			  <SimpleImageSlider
-			
+		  <div className={styles.cardImage} >
+		  <div className={styles.container}>
+              <Slider {...settings}>{sliders()}</Slider>
+            </div>
+			  {/* <SimpleImageSlider
           width={365}
           height={365}
           images={images}
           showBullets={images.length !== 1 ? true : false}
-         //  showNavs={images.length !== 1 ? true : false}
 			showNavs={false}
-         //  navMargin={5}
-			// 	  navSize={40}
 				  onClickNav={()=>onClickNav}
-        />
+        /> */}
       </div>
 
       <div className={styles.cardContent}>
