@@ -1,6 +1,5 @@
-import { ChangeEventHandler, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import styles from "./Modal.module.css";
-import SimpleImageSlider from "react-simple-image-slider";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IState } from "../../redux/store";
@@ -8,7 +7,6 @@ import { deletePost, fetchPost } from "../../redux/actions/postsActions";
 import { Comments } from "./Comments";
 import { petsFetch } from "../../services/helpers";
 import { useNavigate } from "react-router-dom";
-import { stringify } from "querystring";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,7 +21,6 @@ export const Modal = () => {
     (state: IState) => state.postsReducer.post.comments
   );
   const id = useSelector((state: IState) => state.authReducer.id);
-  const images = useSelector((state: IState) => state.postsReducer.post.images);
 
   useEffect(() => {
     if (postId) {

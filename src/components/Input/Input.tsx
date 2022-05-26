@@ -29,14 +29,14 @@ export const Input = ({
   return (
     <label className={styles.label}>
       {" "}
-      {label ? <p>{label}</p> : null}
+      {label ? <p style={{color: theme.timeText}}>{label}</p> : null}
       <input
         type={type}
         value={value}
         onChange={onChange}
         style={{
           color: theme.colorOfTextInput,
-          border: theme.borderOfButton,
+          
         }}
         className={`${styles.input} ${error ? styles.error : ""} ${
           isDark ? styles.input_dark : styles.input

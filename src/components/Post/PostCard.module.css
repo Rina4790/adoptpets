@@ -1,60 +1,51 @@
-.postCard{
-
-	width: 365px;
-	
+.postCard {
+  width: 365px;
 }
 
-.cardContent{
-	height: 55px;
-	margin: 10px;
-	
+.cardContent {
+  height: 55px;
+  margin: 10px;
 }
 
-.contentText{
-	
-	
-	height: 55px;
-	width : 340px;
-	display: -webkit-box;
-   -webkit-line-clamp: 3;
-   -webkit-box-orient: vertical;
-   overflow: hidden;
-   text-overflow: ellipsis;
+.contentText {
+  height: 55px;
+  width: 340px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .container {
-	display: inline-block;
-	width: 365px;
-	height: 365px;
-	margin: 0 auto;
- 
-	color: #333;
-	background: #ffffff;
- }
+  display: inline-block;
+  width: 365px;
+  height: 365px;
+  margin: 0 auto;
+  color: #333;
+  background: #ffffff;
+}
 
- .slickSlide img {
-	display: block;
-	width: 365px;
-	height: 365px;
-	object-fit: cover;
- }
+.slickSlide img {
+  display: block;
+  width: 365px;
+  height: 365px;
+  object-fit: cover;
+}
 
- .slickSlide {
-	display: inline-block;
- }
-
- 
+.slickSlide {
+  display: inline-block;
+}
 
 .slickSlide:hover {
-	background-color: rgb(43, 41, 41);
-	background-image: url("./view.svg");
-	background-size: 50px;
-	background-repeat: no-repeat;
-	background-position: center;
+  background-color: rgb(43, 41, 41);
+  background-image: url("./view.svg");
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .slickSlide img:hover,
 .slickSlide:hover img {
-	
-	opacity: 0.3;
+  opacity: 0.3;
 }

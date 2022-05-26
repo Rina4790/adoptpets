@@ -1,30 +1,56 @@
 .addPostIndex {
   padding: 42px 15px 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .addPost {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.addPrewiu {
+  position: relative;
+  min-width: 420px;
+  border-bottom: 1px solid black;
+  padding: 0px 0px 15px 0px;
+}
+
+.addPrewiuBlack {
+  border-bottom: 1px solid white;
+}
+
+.addPrewiu img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+}
+
+.cropper {
+  margin-bottom: 20px;
 }
 
 .addText {
-  width: 300px;
-  padding: 0px 25px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
+  align-items: flex-start;
+  margin-top: 5px;
 }
 
 .species {
   display: flex;
-  margin: 10px;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .sex {
   display: flex;
-  margin: 10px;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .addBtn {
@@ -33,24 +59,14 @@
   margin-bottom: 30px;
 }
 
-.addImg {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.addImg img {
-  margin-bottom: 30px;
-}
-
 .inputAddImg {
   position: absolute;
-  width: 100px;
-  height: 40px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
   z-index: 100;
   opacity: 0;
-  left: 0px;
+  text-align: center;
 }
 
 .input {
@@ -67,7 +83,6 @@
   font-size: 18px;
   line-height: 23px;
   text-align: center;
-  margin-top: 20px;
 }
 
 .input_dark {
@@ -77,27 +92,43 @@
 .input:focus-visible {
   outline: none;
   border: 1px solid #bd4934;
-
   box-shadow: 0px 0px 30px rgba(182, 59, 14, 0.692);
 }
 
 .input_dark:focus-visible {
   outline: none;
   border: 1px solid #331579;
-
   box-shadow: 0px 0px 30px rgba(176, 68, 219, 0.5);
 }
 
 .birth_date {
-  margin: 15px 0px;
+  margin: 0px 0px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+}
+
+.home img {
+  margin-right: 15px;
+}
+
+.home p {
+  margin-left: 20px;
 }
 
 .has_home {
-  margin: 15px 0px;
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.label {
-  margin: 20px 0px;
+label {
+  margin: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .addName {
@@ -110,5 +141,11 @@
 }
 
 .addManeBtn {
-  margin: 30px 0px;
+  margin: 20px 0px;
+}
+
+p {
+  margin-right: 20px;
+  font-size: 18px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

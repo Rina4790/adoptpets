@@ -55,29 +55,41 @@ export function RootRouter() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/confirm" element={<Confirm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/userProfile"
-				  element={!isLog ? <Navigate replace to="/login" /> : <UserProfile />} />
-			  
-			  <Route path="/addpet"
-          element={!isLog ? <Navigate replace to="/login" /> : <AddPet />}/>
+        <Route
+          path="/userProfile"
+          element={!isLog ? <Navigate replace to="/login" /> : <UserProfile />}
+        />
 
-          <Route path="/favorite"
-          element={!isLog ? <Navigate replace to="/login" /> : <FavoritePosts />}/>	
-			  
+        <Route
+          path="/addpet"
+          element={!isLog ? <Navigate replace to="/login" /> : <AddPet />}
+        />
+
+        <Route
+          path="/favorite"
+          element={
+            !isLog ? <Navigate replace to="/login" /> : <FavoritePosts />
+          }
+        />
+
         <Route path="/pet/:petId" element={<Pet />} />
 
-			  <Route path="/users/:usserId" element={<IdUser />} />
-			  
-			  <Route path="/addpost"
-				  element={!isLog ? <Navigate replace to="/login" /> : <UploadFile />} />
-			  
-			  <Route path="/update"
-				  element={!isLog ? <Navigate replace to="/login" /> : <Update />} />
-			  
-			  <Route path="/pethome"
-				  element={!isLog ? <Navigate replace to="/login" /> : <PetHome />} />
+        <Route path="/users/:usserId" element={<IdUser />} />
 
-       
+        <Route
+          path="/addpost"
+          element={!isLog ? <Navigate replace to="/login" /> : <UploadFile />}
+        />
+
+        <Route
+          path="/update"
+          element={!isLog ? <Navigate replace to="/login" /> : <Update />}
+        />
+
+        <Route
+          path="/pethome"
+          element={!isLog ? <Navigate replace to="/login" /> : <PetHome />}
+        />
       </Routes>
       {state?.backgroundLocation && (
         <Routes>

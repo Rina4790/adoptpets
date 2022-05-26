@@ -3,16 +3,19 @@
 }
 
 .allPosts {
-  padding: 5px 30px 35px 95px;
+  padding: 5px 65px 35px 65px;
 }
+
+@media (max-width: 1360px) {
+	.allPosts {padding: 5px 40px 35px 40px;}
+ }
 
 .group {
   height: 550px;
 
   width: 365px;
   border-radius: 10px;
-  margin-top: 36px;
-  margin-right: 60px;
+  margin: 30px;
 }
 
 .avatar {
@@ -35,8 +38,10 @@
 .postList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
 }
+
+
 
 .petName {
   cursor: pointer;

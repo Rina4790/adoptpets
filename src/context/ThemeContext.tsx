@@ -4,7 +4,7 @@ const darkTheme = {
 	text: "#FFFFFF",
 	blackWhiteText: "#FFFFFF",
   grayText: "#FFFFFF",
-  timeText: "#3c3b4c",
+  timeText: "#c5c1ed",
   colorOfButton: "#E3CEC8", 
   borderOfButton: "1px solid #7158E2",
   colorOfButtonHover: "#7158E2",

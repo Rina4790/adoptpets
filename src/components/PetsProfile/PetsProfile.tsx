@@ -9,9 +9,12 @@ import { deletePet, fetchPet } from "../../redux/actions/petActions";
 import { fetchPetPost, fetchPost } from "../../redux/actions/postsActions";
 import { IState } from "../../redux/store";
 import { petsFetch } from "../../services/helpers";
+import { Container } from "../Blobs/Blobs";
+import { Button } from "../Button/Button";
 
 import { PostCard } from "../Post/PostCard";
 import { Tooltip } from "../Tooltip/Tooltip";
+import { UseModal } from "../UseModal/UseModal";
 import styles from "./PetsProfile.module.css";
 
 export const Pet = () => {
@@ -21,32 +24,33 @@ export const Pet = () => {
   const { theme } = useContext(ThemeContext);
   const id = useSelector((state: IState) => state.authReducer.id);
   const pet = useSelector((state: IState) => state.petsReducer.pet);
-  const posts = useSelector((state: IState) => state.postsReducer.posts);
+	const posts = useSelector((state: IState) => state.postsReducer.posts);
+	const [isModalVisible, setIsModalVisible] = useState(false);
 
   let location = useLocation();
   let state = location.state as { backgroundLocation?: Location };
-console.log(petId)
-  
-const addHome = (id: number) => {
-	dispatch(addPetInHome(id))
-}
+  console.log(petId);
 
-  const deletePostId = (id: string) => {
-    petsFetch(`https://api2.adoptpets.click/posts/${id}`, {
+  const addHome = (id: number) => {
+    dispatch(addPetInHome(id));
+  };
+
+	const deletePostId = () => {
+		const postId = sessionStorage.getItem("postId")
+    petsFetch(`https://api2.adoptpets.click/posts/${postId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ id: id }),
-    }).then(() => {
+	 }).then(() => {
+		setIsModalVisible(false)
       if (petId) {
         dispatch(fetchPetPost(petId));
       }
     });
   };
 
- 
-	
   useEffect(() => {
     if (petId) {
       dispatch(fetchPet(petId));
@@ -57,27 +61,75 @@ const addHome = (id: number) => {
     };
   }, []);
 
+  const [postsArr, setPostsArr] = useState(posts);
+
   useEffect(() => {
     if (petId) {
       dispatch(fetchPetPost(petId));
+      setPostsArr(posts);
     }
-  }, []);
+  }, [posts]);
+
+  const like = (id: string) => {
+    petsFetch(`https://api2.adoptpets.click/posts/${id}/like`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+  };
+
+  const likeDelete = (id: string) => {
+    petsFetch(`https://api2.adoptpets.click/posts/${id}/like`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+  };
+
+  const { isDark } = useContext(ThemeContext);
 
   return pet ? (
-    <>
+    <Container>
       <div
+        className={styles.wrapper}
         style={{
           color: theme.text,
         }}
       >
-        <div>
-          <h3>{pet.name}</h3>
-          <img src={pet.image} className={styles.avatar}></img>
-          <div className={styles.petCard}>
-            <div> Cat or dog: {pet.species}</div>
+        <div className={styles.topBlock}>
+          <div>
+            <img src={pet.image} className={styles.avatar}></img>
+          </div>
+          <div className={styles.name}>
+            <div className={styles.name_update}>
+              <h2>{pet.name}</h2>
+              {id === pet.owner_id ? (
+                <img
+                  className={styles.pen}
+                  onClick={() => {
+                    navigate("/update");
+                  }}
+                  src={isDark ? "/images/penW.svg" : "/images/pen.svg"}
+                  alt="filter"
+                />
+              ) : null}
+            </div>
+            <div className={styles.description}> {pet.description}</div>
+          </div>
+          <div
+            className={styles.petCard}
+            style={{
+              background: theme.postBackground,
+            }}
+          >
+            <div> Kind: {pet.species}</div>
             <div>
               {" "}
-              Boy or girl:{" "}
+              Gender:{" "}
               {pet.sex === "M" ? (
                 <>
                   <img src="/images/man.svg"></img> <span>boy</span>
@@ -89,24 +141,36 @@ const addHome = (id: number) => {
                 </>
               )}
             </div>
-            <div>Date of birth (approximately) : {pet.birth_date}</div>
-            <div>
-              Does the pet have a home?{" "}
-              {pet.has_home === true ? (
-                <>
-                  {" "}
-                  <img src="/images/homeFill.svg"></img> <span>Yes</span>
-                </>
-              ) : (
-                <>
-                  <img src="/images/home.svg"></img>{" "}
-                  <span>No, this pet is looking for a home.</span>
-                </>
-              )}
-            </div>
-            <div> About pet: {pet.description}</div>
+            <div>Age: {pet.birth_date}</div>
             <div> Country: {pet.country}</div>
             <div> City: {pet.city}</div>
+            <div>
+              {pet.has_home === true ? (
+                <div className={styles.pet_home}>
+                  {" "}
+                  <img
+                    src={
+                      isDark
+                        ? "/images/homeFill.svg"
+                        : "/images/homeFill_bl.svg"
+                    }
+                  ></img>{" "}
+                  <span>This pet has a home</span>
+                </div>
+              ) : (
+                <div className={styles.pet_home}>
+                  <img
+                    src={
+                      isDark
+                        ? "/images/home.svg"
+                        : "/images/home_bl.svg"
+                    }
+                  ></img>{" "}
+                  <span>This pet is looking for a home.</span>
+                </div>
+              )}
+            </div>
+
             {id !== pet.owner_id ? (
               <div className={styles.owner_id}>
                 <p>Pet owner: </p>
@@ -130,8 +194,8 @@ const addHome = (id: number) => {
                 <img
                   src="/images/ph.svg"
                   onClick={() => {
-							addHome(pet.id);
-						 }}
+                    addHome(pet.id);
+                  }}
                   className={styles.owner_id_img}
                 ></img>
               </div>
@@ -140,48 +204,79 @@ const addHome = (id: number) => {
         </div>
 
         <div>
-          {id === pet.owner_id ? (
-            <div>
-            	<Tooltip text="Add new post">
-	            	<img
-		              src="/images/add.svg"
-		              onClick={() => {
-		                navigate("/addpost");
-		              }}
-		              className={styles.buttonAdd}
-		            ></img>
-	            </Tooltip>
-            </div>
-          ) : null}
-
           {posts.map ? (
             <>
-              <div className={styles.posts}>
+              <div className={styles.allPosts}>
+                {id === pet.owner_id ? (
+                  <div>
+                    <img
+                      src={isDark ? "/images/plus.svg" : "/images/plusbl.svg"}
+                      onClick={() => {
+                        navigate("/addpost");
+                      }}
+                      className={styles.buttonAdd}
+                    ></img>
+                  </div>
+                ) : null}
                 {posts.map((item) => (
-                  <div className={styles.postCard}>
-                    {id === pet.owner_id ? (
-                      <div
-                        onClick={() => {
-                          deletePostId(item.id);
-                        }}
+                  <div
+                    className={styles.group}
+                    style={{
+                      backgroundColor: theme.postBackground,
+                    }}
+                  >
+							 <div className={styles.petInfo}>
+							 {item.liked ? (
+                        <img
+                          onClick={() => {
+                            likeDelete(item.id);
+                          }}
+                          src="/images/like2.svg"
+                          className={styles.icon}
+                        ></img>
+                      ) : (
+                        <img
+                          onClick={() => {
+                            like(item.id);
+                          }}
+                          src={
+                            isDark ? "/images/like1.svg" : "/images/like.svg"
+                          }
+                          className={styles.icon}
+                        ></img>
+                      )}
+                      {id === pet.owner_id ? (
+                        <img src={isDark ? "/images/plus.svg" : "/images/plusbl.svg"}
+										 onClick={() => { setIsModalVisible(true); sessionStorage.setItem("postId", item.id)}}
+										 className={styles.icon_delete} 
+                        />
+								 ) : null}
+								 <UseModal isVisible={isModalVisible}
+									 onClose={() => setIsModalVisible(false)}>
+									 <div>
+									 <h3>Delete Post?</h3>
+<h4>Are you sure you want to delete this post?</h4>
+									 </div>
+				  <Button onClick={deletePostId}>Delete</Button>
+				  <Button onClick={() => setIsModalVisible(false)}>Cancel</Button>
+				  </UseModal>
+                    </div>
+                    <div className={styles.postLink}>
+                      
+                      <Link
+                        key={item.id}
+                        to={`/img/${item.id}`}
+                        state={{ backgroundLocation: location }}
                       >
-                        x
-                      </div>
-                    ) : null}
-                    <Link
-                      key={item.id}
-                      to={`/img/${item.id}`}
-                      state={{ backgroundLocation: location }}
-                    >
-                      <PostCard
-                        key={item.id + Math.random().toString(16).slice(2)}
-                        images={item.images}
-                        owner_id={item.owner_id}
-                        text={item.text}
-                        time={item.time}
-                        id={item.id}
-                      />
-                    </Link>
+                        <PostCard
+                          images={item.images}
+                          owner_id={item.owner_id}
+                          text={item.text}
+                          time={item.time}
+                          id={item.id}
+                        />
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -189,9 +284,10 @@ const addHome = (id: number) => {
           ) : (
             <div className={styles.noPostsTitle}>NO posts...</div>
           )}
-        </div>
+			  </div>
+			  
       </div>
-    </>
+    </Container>
   ) : (
     <div></div>
   );
